@@ -31,6 +31,16 @@
             get { return _icon; } 
             set { _icon = value; }
         }
+
+        public Category() { }
+
+        public Category(string name, string description, string color, string icon)
+        {
+            _name = name;
+            _description = description;
+            _color = color;
+            _icon = icon;
+        }
         
         public override string ToString()
         {

@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {}
+    "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {
+    "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
+        "projectUniqueName": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
         "projectName": "ControlSpending",
-        "projectPath": "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
-        "packagesPath": "C:\\Users\\Liza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\obj\\",
+        "projectPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
+        "packagesPath": "C:\\Users\\Iryna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Liza\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Iryna\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

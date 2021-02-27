@@ -1,15 +1,42 @@
 {
   "version": 2,
-  "dgSpecHash": "JLxtkEnhHJBB1M4wHFkXkHzzPFlPsTb9TyTud6q3NxKm6rZF9pwvd1X1R9EtbGp4i9v6l10Ge/8/GpSiPWs5HQ==",
+  "dgSpecHash": "iuxc+4C906WXzheAzuM0RRATzXUqr5cb0JLEsXFjlUyNWolbXik9fZpmWQgCkHpRIXV//rqMU51Y6n+BHmKdlg==",
   "success": false,
-  "projectFilePath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpendingTests\\ControlSpendingTests.csproj",
+  "projectFilePath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpendingTests\\ControlSpendingTests.csproj",
   "expectedPackageFiles": [],
   "logs": [
     {
-      "code": "NU1201",
+      "code": "NU1101",
       "level": "Error",
-      "message": "Project ControlSpending is not compatible with netcoreapp3.1 (.NETCoreApp,Version=v3.1). Project ControlSpending supports: net5.0 (.NETCoreApp,Version=v5.0)",
-      "libraryId": "ControlSpending",
+      "message": "Unable to find package Microsoft.NET.Test.Sdk. No packages exist with this id in source(s): nuget.org",
+      "libraryId": "Microsoft.NET.Test.Sdk",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package xunit. No packages exist with this id in source(s): nuget.org",
+      "libraryId": "xunit",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package xunit.runner.visualstudio. No packages exist with this id in source(s): nuget.org",
+      "libraryId": "xunit.runner.visualstudio",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package coverlet.collector. No packages exist with this id in source(s): nuget.org",
+      "libraryId": "coverlet.collector",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

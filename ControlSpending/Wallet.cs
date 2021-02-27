@@ -80,7 +80,7 @@ namespace ControlSpending
             _categories = categories;
         }
 
-        private Transaction findTransaction(string transactionName)
+        private Transaction FindTransaction(string transactionName)
         {
             foreach (var transaction in Transactions)
             {
@@ -93,7 +93,7 @@ namespace ControlSpending
             return null;
         }
 
-        public void addTransaction(Transaction transaction)
+        public void AddTransaction(Transaction transaction)
         {
             _transactions.Add(transaction);
             //_currentBalance += transaction.Sum;
@@ -127,9 +127,9 @@ namespace ControlSpending
         
         //TODO: Write other edit-methods of transactions
 
-        public void editSumOfTransaction(string transactionName, double newSum)
+        public void EditSumOfTransaction(string transactionName, double newSum)
         {
-            Transaction transaction = findTransaction(transactionName);
+            Transaction transaction = FindTransaction(transactionName);
             if (transaction != null)
             {
                 //transaction.Sum = newSum;
@@ -138,9 +138,9 @@ namespace ControlSpending
             }
         }
         
-        public void deleteTransaction(string transactionName)
+        public void DeleteTransaction(string transactionName)
         {
-            Transaction transaction = findTransaction(transactionName);
+            Transaction transaction = FindTransaction(transactionName);
             if (transaction != null)
             {
                 _transactions.Remove(transaction);
@@ -149,12 +149,12 @@ namespace ControlSpending
             }
         }
         
-        public void addCategory(Category category)
+        public void AddCategory(Category category)
         {
             _categories.Add(category);
         }
         
-        public void deleteCategory(string categoryName)
+        public void DeleteCategory(string categoryName)
         {
             var response = false;
             foreach (var category in Categories)

@@ -4,6 +4,7 @@ namespace ControlSpending
     public class Transaction
     {
         private string _name;
+        private int _id;
         private int _sum;
         private string _currency;
         private string _description;
@@ -13,6 +14,12 @@ namespace ControlSpending
         {
             get { return _name; }
             set { _name = value; }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
         public int Sum

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
+      "projectUniqueName": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
       "projectName": "ControlSpending",
-      "projectPath": "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
+      "projectPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
       "packagesPath": "C:\\Users\\Liza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Liza\\Source\\Repos\\Irama03\\ControlSpending\\ControlSpending\\obj\\",
+      "outputPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Liza\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

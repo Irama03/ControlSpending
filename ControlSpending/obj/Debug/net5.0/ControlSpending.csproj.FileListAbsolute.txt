@@ -1,0 +1,16 @@
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.csprojAssemblyReference.cache
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.AssemblyInfoInputs.cache
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.AssemblyInfo.cs
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.csproj.CoreCompileInputs.cache
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ControlSpending.exe
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ControlSpending.deps.json
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ControlSpending.runtimeconfig.json
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ControlSpending.runtimeconfig.dev.json
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ControlSpending.dll
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ref\ControlSpending.dll
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\bin\Debug\net5.0\ControlSpending.pdb
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.dll
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ref\ControlSpending.dll
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.pdb
+C:\Users\Liza\source\reposCSharp\Irama03\ControlSpending\ControlSpending\obj\Debug\net5.0\ControlSpending.genruntimeconfig.cache

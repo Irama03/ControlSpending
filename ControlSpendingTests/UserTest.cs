@@ -9,9 +9,15 @@ namespace ControlSpendingTests
         [Fact]
         public void FullNameTestValid()
         {
-            var user = new User();
+            //Arrange
+            var user = new User { Name = "Liza", Surname = "Andriienko" };
+            var expected = "Andriienko, Liza";
 
+            //Act
+            var actual = user.FullName;
 
+            //Assert
+            Assert.Equal(expected, actual);
         }
     }
 }

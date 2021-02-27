@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlSpending", "ControlS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AEC8FF53-F1C5-494C-B385-569C0265BB44}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{F1CD32A0-4182-4951-A10C-F7D7734874CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlSpendingTests", "TestProject1\ControlSpendingTests.csproj", "{F1CD32A0-4182-4951-A10C-F7D7734874CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{820D0511-EA15-4C51-AA0B-9FFF98A974EC}"
 	ProjectSection(SolutionItems) = preProject

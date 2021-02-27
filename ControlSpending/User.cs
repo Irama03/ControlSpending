@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ControlSpending
 {
@@ -7,6 +8,23 @@ namespace ControlSpending
         private string _name;
         private string _surname;
         private string _email;
+        private List<Wallet> _wallets;
+        private List<Category> _categories;
+
+        public User()
+        {
+            _wallets = new List<Wallet>();
+            _categories = new List<Category>();
+        }
+
+        public User(string name, string surname, string email, List<Wallet> wallets, List<Category> categories)
+        {
+            _name = name;
+            _surname = surname;
+            _email = email;
+            _wallets = wallets;
+            _categories = categories;
+        }
 
         public string Name 
         { 
@@ -26,8 +44,24 @@ namespace ControlSpending
             set { _email = value; } 
         }
 
+        public List<Wallet> Wallets
+        {
+            get
+            {
+                return _wallets;
+            }
+        }
+
+        public List<Category> Categories
+        {
+            get
+            {
+                return _categories;
+            }
+        }
+
         public string FullName 
-       {
+        {
             get
             {
                 var result = Surname;
@@ -41,6 +75,25 @@ namespace ControlSpending
                 }
                 return result;
             }
+        }
+
+        public override bool Validate()
+        {
+            var result = true;
+
+            if (String.IsNullOrWhiteSpace(Name))
+                result = false;
+            if (String.IsNullOrWhiteSpace(Surname))
+                result = false;
+            if (String.IsNullOrWhiteSpace(Email))
+                result = false;
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return FullName;
         }
     }
 }

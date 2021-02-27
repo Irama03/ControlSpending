@@ -5643,9 +5643,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\TestProject1.csproj",
-      "projectName": "TestProject1",
-      "projectPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\TestProject1.csproj",
+      "projectUniqueName": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
+      "projectName": "ControlSpendingTests",
+      "projectPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
       "packagesPath": "C:\\Users\\Liza\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",

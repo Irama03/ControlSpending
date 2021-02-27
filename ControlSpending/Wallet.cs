@@ -10,6 +10,7 @@ namespace ControlSpending
     {
         private string _name;
         private double _initialBalance = 0;
+        private double _currentBalance;
         private string _description;
         private string _mainCurrency;
         private List<Transaction> _transactions;
@@ -25,6 +26,11 @@ namespace ControlSpending
         {
             get { return _initialBalance; }
             set { _initialBalance = value; }
+        }
+        
+        public double CurrentBalance
+        {
+            get { return _currentBalance; }
         }
         
         public string Description
@@ -57,6 +63,7 @@ namespace ControlSpending
         
         public Wallet()
         {
+            _currentBalance = _initialBalance;
             _transactions = new List<Transaction>();
             _categories = new List<Category>();
         }
@@ -66,18 +73,14 @@ namespace ControlSpending
         {
             _name = name;
             _initialBalance = initialBalance;
+            _currentBalance = _initialBalance;
             _description = description;
             _mainCurrency = mainCurrency;
             _transactions = new List<Transaction>();
             _categories = categories;
         }
 
-        public void addTransaction(Transaction transaction)
-        {
-            _transactions.Add(transaction);
-        }
-
-        public Transaction getTransaction(string transactionName)
+        private Transaction findTransaction(string transactionName)
         {
             foreach (var transaction in Transactions)
             {
@@ -89,6 +92,25 @@ namespace ControlSpending
             Console.WriteLine("The transaction is not found");
             return null;
         }
+
+        public void addTransaction(Transaction transaction)
+        {
+            _transactions.Add(transaction);
+            //_currentBalance += transaction.Sum;
+        }
+
+        /*public Transaction getTransaction(string transactionName)
+        {
+            foreach (var transaction in Transactions)
+            {
+                if (transaction.Name.Equals(transactionName))
+                {
+                    return transaction;
+                }
+            }
+            Console.WriteLine("The transaction is not found");
+            return null;
+        }*/
         
         /*public void deleteTransaction(Transaction transaction)
         {
@@ -103,25 +125,54 @@ namespace ControlSpending
             }
         }*/
         
+        //TODO: Write other edit-methods of transactions
+
+        public void editSumOfTransaction(string transactionName, double newSum)
+        {
+            Transaction transaction = findTransaction(transactionName);
+            if (transaction != null)
+            {
+                //transaction.Sum = newSum;
+                //_currentBalance += transaction.Sum;
+                Console.WriteLine("Sum of the transaction was edited successfully");
+            }
+        }
+        
         public void deleteTransaction(string transactionName)
         {
-            var response = false;
-            foreach (var transaction in Transactions)
+            Transaction transaction = findTransaction(transactionName);
+            if (transaction != null)
             {
-                if (transaction.Name.Equals(transactionName))
+                _transactions.Remove(transaction);
+                //_currentBalance -= transaction.Sum;
+                Console.WriteLine("The transaction was deleted successfully");
+            }
+        }
+        
+        public void addCategory(Category category)
+        {
+            _categories.Add(category);
+        }
+        
+        public void deleteCategory(string categoryName)
+        {
+            var response = false;
+            foreach (var category in Categories)
+            {
+                if (category.Name.Equals(categoryName))
                 {
-                    _transactions.Remove(transaction);
+                    _categories.Remove(category);
                     response = true;
                     break;
                 }
             }
             if (!response)
             {
-                Console.WriteLine("The transaction is not found");
+                Console.WriteLine("The category is not found");
             }
             else
             {
-                Console.WriteLine("The transaction was deleted successfully");
+                Console.WriteLine("The category was deleted successfully");
             }
         }
         

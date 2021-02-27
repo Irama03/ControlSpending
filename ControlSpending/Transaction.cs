@@ -1,13 +1,13 @@
-﻿namespace ControlSpending
+﻿using System;
+namespace ControlSpending
 {
     public class Transaction
     {
-        //new transaction
         private string _name;
         private int _sum;
         private string _currency;
         private string _description;
-        private string _date;
+        private DateTime? _date;
 
         public string Name
         {
@@ -33,12 +33,10 @@
             set { _description = value; }
         }
 
-        public string Date
+        public DateTime? Date
         {
             get { return _date; }
-            set { _date = value; }
+            set {  _date = value; }
         }
-
-        //new tr
     }
 }

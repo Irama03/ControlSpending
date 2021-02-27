@@ -38,5 +38,10 @@ namespace ControlSpending
             get { return _date; }
             set {  _date = value; }
         }
+
+        private void AddFile(string path)
+        {
+
+        }
     }
 }

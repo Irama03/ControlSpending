@@ -4,11 +4,13 @@ using System.IO;
 
 namespace ControlSpending
 {
-    public class Transaction
+    // Class Transaction keeps an amount, currency, category, description, date.
+    //You can also attach files (images or text) to the transaction.
+    public class Transaction : Entity
     {
         private string _name;
         private int _id;
-        private int _sum;
+        private double _sum;
         private string _currency;
         private string _description;
         private DateTime? _date;
@@ -20,7 +22,7 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, int sum, string currency, string description, DateTime? date, List<FileInfo> files)
+        public Transaction(int id, double sum, string currency, string description, DateTime? date, List<FileInfo> files)
         {
             _id = id;
             _sum = sum;
@@ -42,7 +44,7 @@ namespace ControlSpending
             set { _id = value; }
         }
 
-        public int Sum
+        public double Sum
         {
             get { return _sum; }
             set { _sum = value; }
@@ -68,10 +70,8 @@ namespace ControlSpending
 
         public List<FileInfo> Files
         {
-            get
-            {
-                return _files;
-            }
+            get { return _files; }
+            set { _files = value; }
         }
 
         //public bool EnableFile
@@ -89,6 +89,24 @@ namespace ControlSpending
         {
             FileInfo fileInfo = new FileInfo(path);
             _files.Add(fileInfo);
+        }
+
+        public override bool Validate()
+        {
+            var result = true;
+
+            if (Id <= 0)
+                result = false;
+            if (Sum <= 0)
+                result = false;
+            if (String.IsNullOrWhiteSpace(Currency))
+                result = false;
+            if (String.IsNullOrWhiteSpace(Description))
+                result = false;
+            if (Date == null)
+                result = false;
+
+            return result;
         }
 
         public override string ToString()

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace ControlSpending
 {
-    //Гаманець. Повинен зберігати назву, початковий баланс гаманця, опис та
-    //основну валюту. До нього додаються транзакції. Для кожного гаманця можна
-    //вказати список категорій, який доступний в ньому для транзакцій.
-    public class Wallet
+    // Class Wallet keeps the name, initial wallet balance, description and base currency. 
+    // Transactions are added to it. For each wallet, you can specify a list of categories that are available in it for transactions.
+    public class Wallet : Entity
     {
         private string _name;
         private double _initialBalance = 0;
@@ -47,10 +46,8 @@ namespace ControlSpending
         
         public List<Transaction> Transactions
         {
-            get
-            {
-                return _transactions;
-            }
+            get { return _transactions; }
+            set { _transactions = value; }
         }
         
         public List<Category> Categories
@@ -80,12 +77,13 @@ namespace ControlSpending
             _categories = categories;
         }
 
-        private Transaction FindTransaction(string transactionName)
+        public Transaction FindTransaction(int transactionId)
         {
             foreach (var transaction in Transactions)
             {
-                if (transaction.Name.Equals(transactionName))
+                if (transaction.Id.CompareTo(transactionId) == 0)
                 {
+                    Console.WriteLine("+");
                     return transaction;
                 }
             }
@@ -127,9 +125,9 @@ namespace ControlSpending
         
         //TODO: Write other edit-methods of transactions
 
-        public void EditSumOfTransaction(string transactionName, double newSum)
+        public void EditSumOfTransaction(int transactionId, double newSum)
         {
-            Transaction transaction = FindTransaction(transactionName);
+            Transaction transaction = FindTransaction(transactionId);
             if (transaction != null)
             {
                 //transaction.Sum = newSum;
@@ -138,9 +136,9 @@ namespace ControlSpending
             }
         }
         
-        public void DeleteTransaction(string transactionName)
+        public void DeleteTransaction(int transactionId)
         {
-            Transaction transaction = FindTransaction(transactionName);
+            Transaction transaction = FindTransaction(transactionId);
             if (transaction != null)
             {
                 _transactions.Remove(transaction);
@@ -175,7 +173,21 @@ namespace ControlSpending
                 Console.WriteLine("The category was deleted successfully");
             }
         }
-        
+
+        public override bool Validate()
+        {
+            var result = true;
+
+            if (String.IsNullOrWhiteSpace(Name))
+                result = false;
+            if (String.IsNullOrWhiteSpace(Description))
+                result = false;
+            if (String.IsNullOrWhiteSpace(MainCurrency))
+                result = false;
+
+            return result;
+        }
+
         public override string ToString()
         {
             return $"{Name}, {InitialBalance}, {Description}, {MainCurrency}";

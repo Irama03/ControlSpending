@@ -12,7 +12,7 @@ namespace ControlSpendingTests
         public void DeleteTransactionTest() //public void FindTransactionTest()
         {
             //Arrange
-            var wallet = new Wallet()
+            var wallet = new User.Wallet()
             {
                 InitialBalance = 505.3,
                 Description = "new wallet",

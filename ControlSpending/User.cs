@@ -303,7 +303,7 @@ namespace ControlSpending
                         return;
                     }
                 }
-                /*if (!(_owner.Categories.Contains(transaction.Category)))
+                if (!(_owner.Categories.Contains(transaction.Category)))
                 {
                     Console.WriteLine("Transaction with unknown Category can't be added!");
                     return;
@@ -313,7 +313,7 @@ namespace ControlSpending
                     Console.WriteLine("Category of the transaction is unavailable. " 
                                       + "Transaction can't be added!");
                     return;
-                }*/
+                }
                 _transactions.Add(transaction);
                 _currentBalance += transaction.Sum;
                 Console.WriteLine("The transaction was added successfully");
@@ -399,10 +399,29 @@ namespace ControlSpending
                     }
                 }
             }
-
-            //TODO: Write edit Category
-            public void EditDateOfTransaction(int transactionId, Category newCategory)
+            
+            public void EditCategoryOfTransaction(int transactionId, Category newCategory)
             {
+                if (TransactionIdIsValid(transactionId))
+                {
+                    if (!(_owner.Categories.Contains(newCategory)))
+                    {
+                        Console.WriteLine("Category of the Transaction can't be changed to unknown Category!");
+                        return;
+                    }
+                    if (!IsAvailable(newCategory))
+                    {
+                        Console.WriteLine("New category of the transaction is unavailable. " 
+                                          + "Category of the Transaction can't be changed!");
+                        return;
+                    }
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Category = newCategory;
+                        Console.WriteLine("Category of the transaction was edited successfully");
+                    }
+                }
             }
 
             public void EditFilesOfTransaction(int transactionId, List<FileInfo> newFiles)

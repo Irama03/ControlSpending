@@ -1,5 +1,6 @@
 using ControlSpending;
 using System;
+using System.IO;
 using Xunit;
 
 namespace  ControlSpendingTests
@@ -11,7 +12,7 @@ namespace  ControlSpendingTests
         {
             //Arrange
             var user = new User { Name = "Liza", Surname = "Andriienko" };
-            var expected = "Andriienko, Liza";
+            var expected = "Andriienko Liza";
 
             //Act
             var actual = user.FullName;
@@ -52,7 +53,8 @@ namespace  ControlSpendingTests
         public void ValidateTest()
         {
             //Arrange
-            var user = new User() { Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var user = new User() { Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com", Category = {
+                Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") } };
 
             //Act
             var actual = user.Validate();
@@ -65,7 +67,8 @@ namespace  ControlSpendingTests
         public void ValidateNoNameTest()
         {
             //Arrange
-            var user = new User() { Email = "liza123.sa@gmail.com" };
+            var user = new User() { Email = "liza123.sa@gmail.com",
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") } };
 
             //Act
             var actual = user.Validate();
@@ -78,7 +81,21 @@ namespace  ControlSpendingTests
         public void ValidateNoEmailTest()
         {
             //Arrange
-            var user = new User() { Name = "Liza", Surname = "Andriienko" };
+            var user = new User() { Name = "Liza", Surname = "Andriienko",
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") } };
+
+            //Act
+            var actual = user.Validate();
+
+            //Assert
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void ValidateNoCategoryTest()
+        {
+            //Arrange
+            var user = new User() { Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
 
             //Act
             var actual = user.Validate();

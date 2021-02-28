@@ -12,6 +12,7 @@ namespace ControlSpending
         private string _email;
         private List<Wallet> _wallets;
         private List<Category> _categories;
+        private Category _category;
 
         public User()
         {
@@ -19,31 +20,62 @@ namespace ControlSpending
             _categories = new List<Category>();
         }
 
-        public User(string name, string surname, string email, List<Wallet> wallets, List<Category> categories)
+        public User(string name, string surname, string email, Category category)
         {
             _name = name;
             _surname = surname;
             _email = email;
-            _wallets = wallets;
-            _categories = categories;
+            _wallets = new List<Wallet>();
+            _categories = new List<Category>();
+            _category = category;
         }
 
         public string Name 
         { 
             get { return _name; } 
-            set { _name = value; } 
+            set 
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _name = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Name!");
+                }
+            } 
         }
 
         public string Surname 
         { 
             get { return _surname; } 
-            set { _surname = value; } 
+            set 
+            { 
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _surname = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Surname!");
+                }
+            } 
         }
 
         public string Email 
         { 
             get { return _email; } 
-            set { _email = value; } 
+            set 
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _email = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Email!");
+                }
+            } 
         }
 
         public List<Wallet> Wallets
@@ -62,6 +94,22 @@ namespace ControlSpending
             }
         }
 
+        public Category Category
+        {
+            get { return _category; }
+            set 
+            {
+                if (value != null)
+                {
+                    _category = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Category!");
+                }
+            }
+        }
+
         public string FullName 
         {
             get
@@ -71,7 +119,7 @@ namespace ControlSpending
                 {
                     if (!String.IsNullOrWhiteSpace(Surname))
                     {
-                        result += ", ";
+                        result += ' ';
                     }
                     result += Name;
                 }
@@ -88,6 +136,8 @@ namespace ControlSpending
             if (String.IsNullOrWhiteSpace(Surname))
                 result = false;
             if (String.IsNullOrWhiteSpace(Email))
+                result = false;
+            if (Category == null)
                 result = false;
 
             return result;
@@ -227,6 +277,8 @@ namespace ControlSpending
                     }
                 }
             }
+
+            public Wallet() {}
 
             private bool IsAvailable(Category category)
             {

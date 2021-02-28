@@ -2,6 +2,7 @@
 using System;
 using Xunit;
 using System.Collections.Generic;
+using static ControlSpending.User;
 
 namespace ControlSpendingTests
 {
@@ -12,7 +13,13 @@ namespace ControlSpendingTests
         public void DeleteTransactionTest() //public void FindTransactionTest()
         {
             //Arrange
-            var wallet = new User.Wallet()
+            //var w = new User.Wallet()
+            //{
+            //    InitialBalance = 505.3,
+            //    Description = "new wallet",
+            //    MainCurrency = "euro",
+            //};
+            Wallet wallet = new Wallet()
             {
                 InitialBalance = 505.3,
                 Description = "new wallet",

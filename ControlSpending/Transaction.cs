@@ -8,7 +8,6 @@ namespace ControlSpending
     //You can also attach files (images or text) to the transaction.
     public class Transaction : Entity
     {
-        private string _name;
         private int _id;
         private double _sum;
         private string _currency;
@@ -22,20 +21,14 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, double sum, string currency, string description, DateTime? date, List<FileInfo> files)
+        public Transaction(int id, double sum, string currency, string description, DateTime? date)
         {
             _id = id;
             _sum = sum;
             _currency = currency;
             _description = description;
             _date = date;
-            _files = files;
-        }
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
+            _files = new List <FileInfo>();
         }
 
         public int Id
@@ -96,8 +89,6 @@ namespace ControlSpending
             var result = true;
 
             if (Id <= 0)
-                result = false;
-            if (Sum <= 0)
                 result = false;
             if (String.IsNullOrWhiteSpace(Currency))
                 result = false;

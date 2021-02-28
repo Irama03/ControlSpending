@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj": {}
+    "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {
+    "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
+        "projectUniqueName": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
         "projectName": "ControlSpending",
-        "projectPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
-        "packagesPath": "C:\\Users\\Iryna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\obj\\",
+        "projectPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj",
+        "packagesPath": "C:\\Users\\Liza\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Iryna\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Liza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,34 +54,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj": {
+    "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
+        "projectUniqueName": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
         "projectName": "ControlSpendingTests",
-        "projectPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
-        "packagesPath": "C:\\Users\\Iryna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\obj\\",
+        "projectPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
+        "packagesPath": "C:\\Users\\Liza\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\TestProject1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Iryna\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Liza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {
-                "projectPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\ControlSpending\\ControlSpending.csproj"
+              "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj": {
+                "projectPath": "C:\\Users\\Liza\\source\\reposCSharp\\Irama03\\ControlSpending\\ControlSpending\\ControlSpending.csproj"
               }
             }
           }
@@ -130,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

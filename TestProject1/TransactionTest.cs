@@ -48,26 +48,6 @@ namespace ControlSpendingTests
         }
 
         [Fact]
-        public void ValidateNoSumTest()
-        {
-            //Arrange
-            var transaction = new Transaction() 
-            {
-                Id = 1,
-                Currency = "dollar",
-                Description = "new transaction",
-                Date = new DateTime(2021, 7, 20),
-                Files = null
-            };
-
-            //Act
-            var actual = transaction.Validate();
-
-            //Assert
-            Assert.False(actual);
-        }
-
-        [Fact]
         public void ValidateNoCurrencyTest()
         {
             //Arrange

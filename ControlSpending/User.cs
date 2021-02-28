@@ -259,7 +259,6 @@ namespace ControlSpending
             public Wallet(User user, string name, double initialBalance, string description, 
                 string mainCurrency)//, List<Category> categories)
             {
-                //What will be if data is invalid?
                 _owner = user;
                 _name = name;
                 _initialBalance = initialBalance;
@@ -275,6 +274,10 @@ namespace ControlSpending
                     {
                         _availabilityOfCategories.Add(true);
                     }
+                }
+                if (!Validate())
+                {
+                    throw new ArgumentException("Invalid argument in constructor of Wallet!");
                 }
             }
 
@@ -547,7 +550,7 @@ namespace ControlSpending
                 }
             }
 
-            public void showAvailableCategories()
+            public void ShowAvailableCategories()
             {
                 foreach (var category in _owner.Categories)
                 {

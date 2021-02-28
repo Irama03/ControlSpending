@@ -79,11 +79,14 @@ namespace ControlSpending
 
         public Category(string name, string description, string color, string iconPath)
         {
-            //What will be if data is invalid?
             _name = name;
             _description = description;
             _color = color;
             _icon = new FileInfo(iconPath);
+            if (!Validate())
+            {
+                throw new ArgumentException("Invalid argument in constructor of Category!");
+            }
         }
 
         public override bool Validate()

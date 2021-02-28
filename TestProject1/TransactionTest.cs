@@ -1,5 +1,6 @@
 ﻿using ControlSpending;
 using System;
+using System.IO;
 using Xunit;
 
 namespace ControlSpendingTests
@@ -17,7 +18,7 @@ namespace ControlSpendingTests
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Files = null
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
             };
 
             //Act
@@ -37,7 +38,7 @@ namespace ControlSpendingTests
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Files = null
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") },
             };
 
             //Act
@@ -57,7 +58,7 @@ namespace ControlSpendingTests
                 Sum = 275.89,
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Files = null
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
             };
 
             //Act
@@ -77,7 +78,7 @@ namespace ControlSpendingTests
                 Sum = 275.89,
                 Currency = "dollar",
                 Date = new DateTime(2021, 7, 20),
-                Files = null
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
             };
 
             //Act
@@ -97,7 +98,7 @@ namespace ControlSpendingTests
                 Sum = 275.89,
                 Currency = "dollar",
                 Description = "new transaction",
-                Files = null
+                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
             };
 
             //Act
@@ -106,6 +107,27 @@ namespace ControlSpendingTests
             //Assert
             Assert.False(actual);
         }
+
+        [Fact]
+        public void ValidateNoCategoryTest()
+        {
+            //Arrange
+            var transaction = new Transaction()
+            {
+                Id = 1,
+                Sum = 275.89,
+                Currency = "dollar",
+                Description = "new transaction",
+                Date = new DateTime(2021, 7, 20)
+            };
+
+            //Act
+            var actual = transaction.Validate();
+
+            //Assert
+            Assert.False(actual);
+        }
+
 
         [Fact]
         public void ValidateEmptyUserTest()

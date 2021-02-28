@@ -8,17 +8,10 @@ namespace ControlSpendingTests
 {
     public class WalletTest
     {
-        //Method FindTransaction() should be private
         [Fact]
-        public void DeleteTransactionTest() //public void FindTransactionTest()
+        public void DeleteTransactionTest() 
         {
             //Arrange
-            //var w = new User.Wallet()
-            //{
-            //    InitialBalance = 505.3,
-            //    Description = "new wallet",
-            //    MainCurrency = "euro",
-            //};
             Wallet wallet = new Wallet()
             {
                 InitialBalance = 505.3,
@@ -46,14 +39,6 @@ namespace ControlSpendingTests
                    Date = new DateTime(2020, 1, 15),
                    Files = null
                });
-            /*var expected = transactions[1];
-
-            //Act
-            wallet.Transactions = transactions;
-            /*var actual = wallet.FindTransaction(2);
-
-            //Assert
-            Assert.Equal(expected, actual);*/
 
             var expected = true;
                 

@@ -12,7 +12,6 @@ namespace ControlSpending
         private string _email;
         private List<Wallet> _wallets;
         private List<Category> _categories;
-        private Category _category;
 
         public User()
         {
@@ -20,14 +19,17 @@ namespace ControlSpending
             _categories = new List<Category>();
         }
 
-        public User(string name, string surname, string email, Category category)
+        public User(string name, string surname, string email)
         {
             _name = name;
             _surname = surname;
             _email = email;
             _wallets = new List<Wallet>();
             _categories = new List<Category>();
-            _category = category;
+            if (!Validate())
+            {
+                throw new ArgumentException("Invalid argument in constructor of User!");
+            }
         }
 
         public string Name 
@@ -80,34 +82,12 @@ namespace ControlSpending
 
         public List<Wallet> Wallets
         {
-            get
-            {
-                return _wallets;
-            }
+            get { return _wallets; }
         }
 
         public List<Category> Categories
         {
-            get
-            {
-                return _categories;
-            }
-        }
-
-        public Category Category
-        {
-            get { return _category; }
-            set 
-            {
-                if (value != null)
-                {
-                    _category = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Category!");
-                }
-            }
+            get { return _categories; }
         }
 
         public string FullName 
@@ -136,8 +116,6 @@ namespace ControlSpending
             if (String.IsNullOrWhiteSpace(Surname))
                 result = false;
             if (String.IsNullOrWhiteSpace(Email))
-                result = false;
-            if (Category == null)
                 result = false;
 
             return result;

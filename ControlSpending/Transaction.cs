@@ -13,6 +13,7 @@ namespace ControlSpending
         private string _currency;
         private string _description;
         private DateTime? _date;
+        private Category _category;
         // private bool _enableFile = false;
         private List<FileInfo> _files;
 
@@ -21,20 +22,35 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, double sum, string currency, string description, DateTime? date)
+        public Transaction(int id, double sum, string currency, string description, DateTime? date, Category category)
         {
             _id = id;
             _sum = sum;
             _currency = currency;
             _description = description;
             _date = date;
+            _category = category;
             _files = new List <FileInfo>();
+            if (!Validate())
+            {
+                throw new ArgumentException("Invalid argument in constructor of Transaction!");
+            }
         }
 
         public int Id
         {
             get { return _id; }
-            set { _id = value; }
+            set
+            {
+                if (value <= 0)
+                {
+                    _id = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Id!");
+                }
+            }
         }
 
         public double Sum
@@ -46,19 +62,55 @@ namespace ControlSpending
         public string Currency
         {
             get { return _currency; }
-            set { _currency = value; }
+            set
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _currency = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Currency!");
+                }
+            }
         }
 
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _description = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Description!");
+                }
+            }
         }
 
         public DateTime? Date
         {
             get { return _date; }
             set {  _date = value; }
+        }
+
+        public Category Category
+        {
+            get { return _category; }
+            set
+            {
+                if (value != null)
+                {
+                    _category = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Category!");
+                }
+            }
         }
 
         public List<FileInfo> Files
@@ -95,6 +147,8 @@ namespace ControlSpending
             if (String.IsNullOrWhiteSpace(Description))
                 result = false;
             if (Date == null)
+                result = false;
+            if (Category == null)
                 result = false;
 
             return result;

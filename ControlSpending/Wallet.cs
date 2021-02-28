@@ -199,7 +199,7 @@ namespace ControlSpending
         
         public bool DeleteTransaction(int transactionId)
         {
-            Transaction transaction = FindTransaction(transactionId);
+            var transaction = FindTransaction(transactionId);
             if (transaction != null)
             {
                 _transactions.Remove(transaction);
@@ -235,6 +235,40 @@ namespace ControlSpending
             {
                 Console.WriteLine("The category was deleted successfully");
             }
+        }
+
+        double generalSumOfIncomeForMonth()
+        {
+            double result = 0;
+            int currMonth = DateTime.Now.Month;
+            foreach (var transaction in Transactions)
+            {
+                if (transaction.Date != null && transaction.Date.Value.Month == currMonth)
+                {
+                    if (transaction.Sum > 0)
+                    {
+                        result += transaction.Sum;
+                    }
+                }
+            }
+            return result;
+        }
+        
+        double generalSumOfSpendingsForMonth()
+        {
+            double result = 0;
+            int currMonth = DateTime.Now.Month;
+            foreach (var transaction in Transactions)
+            {
+                if (transaction.Date != null && transaction.Date.Value.Month == currMonth)
+                {
+                    if (transaction.Sum < 0)
+                    {
+                        result += transaction.Sum;
+                    }
+                }
+            }
+            return Math.Abs(result);
         }
 
         public override bool Validate()

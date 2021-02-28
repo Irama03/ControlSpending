@@ -13,32 +13,73 @@ namespace ControlSpending
 
         public string Name
         {
-            get { return _name; } 
-            set { _name = value; } 
+            get { return _name; }
+            set
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _name = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Name!");
+                }
+            } 
         }
 
         public string Description
         {
-            get { return _description; } 
-            set { _description = value; } 
+            get { return _description; }
+            set
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _description = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Description!");
+                }
+            } 
         }
 
         public string Color
         {
-            get { return _color; } 
-            set { _color = value; }
+            get { return _color; }
+            set
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    _color = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Color!");
+                }
+            }
         }
 
         public FileInfo Icon
         {
-            get { return _icon; } 
-            set { _icon = value; }
+            get { return _icon; }
+            set
+            {
+                if (value != null)
+                {
+                    _icon = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid value of Icon!");
+                }
+            }
         }
 
         public Category() { }
 
         public Category(string name, string description, string color, string iconPath)
         {
+            //What will be if data is invalid?
             _name = name;
             _description = description;
             _color = color;
@@ -63,7 +104,7 @@ namespace ControlSpending
 
         public override string ToString()
         {
-            return $"{Name}, {Description}, {Color}, {Icon}";
+            return $"{Name}, {Description}, {Color}, {Icon.Name}";
         }
     }
 }

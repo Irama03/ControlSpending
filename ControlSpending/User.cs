@@ -115,7 +115,17 @@ namespace ControlSpending
             public string Name
             {
                 get { return _name; }
-                set { _name = value; }
+                set
+                {
+                    if (!String.IsNullOrWhiteSpace(value))
+                    {
+                        _name = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid value of Name!");
+                    }
+                }
             }
             
             public double InitialBalance
@@ -137,13 +147,33 @@ namespace ControlSpending
             public string Description
             {
                 get { return _description; }
-                set { _description = value; }
+                set
+                {
+                    if (!String.IsNullOrWhiteSpace(value))
+                    {
+                        _description = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid value of Description!");
+                    }
+                }
             }
             
             public string MainCurrency
             {
                 get { return _mainCurrency; }
-                set { _mainCurrency = value; }
+                set
+                {
+                    if (!String.IsNullOrWhiteSpace(value))
+                    {
+                        _mainCurrency = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid value of MainCurrency!");
+                    }
+                }
             }
             
             public List<Transaction> Transactions
@@ -167,15 +197,20 @@ namespace ControlSpending
                 _transactions = new List<Transaction>();
                 //_categories = new List<Category>();
                 _availabilityOfCategories = new List<bool>();
-                for(int i = 0; i < _owner._categories.Count; i++)
+                if (_owner.Categories != null)
                 {
-                    _availabilityOfCategories.Add(true);
+                    for(int i = 0; i < _owner._categories.Count; i++)
+                    {
+                        _availabilityOfCategories.Add(true);
+                    }
                 }
             }
 
             public Wallet(User user, string name, double initialBalance, string description, 
                 string mainCurrency)//, List<Category> categories)
             {
+                //What will be if data is invalid?
+                _owner = user;
                 _name = name;
                 _initialBalance = initialBalance;
                 _currentBalance = _initialBalance;
@@ -184,116 +219,169 @@ namespace ControlSpending
                 _transactions = new List<Transaction>();
                 //_categories = categories;
                 _availabilityOfCategories = new List<bool>();
-                for(int i = 0; i < Transactions.Count; i++)
+                if (_owner.Categories != null)
                 {
-                    _availabilityOfCategories.Add(true);
+                    for(int i = 0; i < _owner._categories.Count; i++)
+                    {
+                        _availabilityOfCategories.Add(true);
+                    }
                 }
+            }
+
+            private bool IsAvailable(Category category)
+            {
+                return (_availabilityOfCategories[_owner.Categories.IndexOf(category)]);
+            }
+
+            private bool TransactionIdIsValid(int transactionId)
+            {
+                bool result = transactionId >= 0;
+                if (!result)
+                {
+                    Console.WriteLine("Invalid transactionId!");
+                }
+                return result;
             }
 
             private Transaction FindTransaction(int transactionId)
             {
-                foreach (var transaction in Transactions)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    if (transaction.Id.CompareTo(transactionId) == 0)
+                    foreach (var transaction in Transactions)
                     {
-                        Console.WriteLine("+");
-                        return transaction;
+                        if (transaction.Id == transactionId)
+                        {
+                            Console.WriteLine("+");
+                            return transaction;
+                        }
                     }
+                    Console.WriteLine("The transaction is not found");
                 }
-                Console.WriteLine("The transaction is not found");
                 return null;
             }
 
             public void AddTransaction(Transaction transaction)
             {
-                _transactions.Add(transaction);
-                _currentBalance += transaction.Sum;
-            }
-
-            /*public Transaction getTransaction(string transactionName)
-            {
-                foreach (var transaction in Transactions)
+                foreach (var t in Transactions)
                 {
-                    if (transaction.Name.Equals(transactionName))
+                    if (t.Id == transaction.Id)
                     {
-                        return transaction;
+                        Console.WriteLine("Transaction with this id already exists!");
+                        return;
                     }
                 }
-                Console.WriteLine("The transaction is not found");
-                return null;
-            }*/
-            
-            /*public void deleteTransaction(Transaction transaction)
-            {
-                bool response = _transactions.Remove(transaction);
-                if (!response)
+                /*if (!(_owner.Categories.Contains(transaction.Category)))
                 {
-                    Console.WriteLine("The transaction is not found");
+                    Console.WriteLine("Transaction with unknown Category can't be added!");
+                    return;
                 }
-                else
+                if (!IsAvailable(transaction.Category))
                 {
-                    Console.WriteLine("The transaction was deleted successfully");
-                }
-            }*/
+                    Console.WriteLine("Category of the transaction is unavailable. " 
+                                      + "Transaction can't be added!");
+                    return;
+                }*/
+                _transactions.Add(transaction);
+                _currentBalance += transaction.Sum;
+                Console.WriteLine("The transaction was added successfully");
+            }
 
             public void EditIdOfTransaction(int transactionId, int newId)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId) && TransactionIdIsValid(newId))
                 {
-                    transaction.Id = newId;
-                    Console.WriteLine("Id of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Id = newId;
+                        Console.WriteLine("Id of the transaction was edited successfully");
+                    }
                 }
             }
 
             public void EditSumOfTransaction(int transactionId, double newSum)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    transaction.Sum = newSum;
-                    _currentBalance += transaction.Sum;
-                    Console.WriteLine("Sum of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        _currentBalance -= transaction.Sum;
+                        transaction.Sum = newSum;
+                        _currentBalance += transaction.Sum;
+                        Console.WriteLine("Sum of the transaction was edited successfully");
+                    }
                 }
             }
             
             public void EditCurrencyOfTransaction(int transactionId, string newCurrency)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    transaction.Currency = newCurrency;
-                    Console.WriteLine("Currency of the transaction was edited successfully");
+                    if (!String.IsNullOrWhiteSpace(newCurrency))
+                    {
+                        var transaction = FindTransaction(transactionId);
+                        if (transaction != null)
+                        {
+                            transaction.Currency = newCurrency;
+                            Console.WriteLine("Currency of the transaction was edited successfully");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid value of newCurrency!");
+                    }
                 }
             }
             
             public void EditDescriptionOfTransaction(int transactionId, string newDescription)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    transaction.Description = newDescription;
-                    Console.WriteLine("Description of the transaction was edited successfully");
+                    if (!String.IsNullOrWhiteSpace(newDescription))
+                    {
+                        var transaction = FindTransaction(transactionId);
+                        if (transaction != null)
+                        {
+                            transaction.Description = newDescription;
+                            Console.WriteLine("Description of the transaction was edited successfully");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid value of newDescription!");
+                    }
                 }
             }
             
             public void EditDateOfTransaction(int transactionId, DateTime newDate)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    transaction.Date = newDate;
-                    Console.WriteLine("Date of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Date = newDate;
+                        Console.WriteLine("Date of the transaction was edited successfully");
+                    }
                 }
             }
-            
+
+            //TODO: Write edit Category
+            public void EditDateOfTransaction(int transactionId, Category newCategory)
+            {
+            }
+
             public void EditFilesOfTransaction(int transactionId, List<FileInfo> newFiles)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    transaction.Files = newFiles;
-                    Console.WriteLine("Files of the transaction were edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Files = newFiles;
+                        Console.WriteLine("Files of the transaction were edited successfully");
+                    }
                 }
             }
             
@@ -301,55 +389,50 @@ namespace ControlSpending
             
             /*public void AddFileToTransaction(int transactionId, FileInfo newFile)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+            if (transactionIdIsValid(transactionId))
                 {
-                    transaction.AddFile(newFile);
-                    Console.WriteLine("New file was added to the transaction successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.AddFile(newFile);
+                        Console.WriteLine("New file was added to the transaction successfully");
+                    }
                 }
             }*/
             
             public bool DeleteTransaction(int transactionId)
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (TransactionIdIsValid(transactionId))
                 {
-                    _transactions.Remove(transaction);
-                    _currentBalance -= transaction.Sum;
-                    Console.WriteLine("The transaction was deleted successfully");
-                    return true;
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        _transactions.Remove(transaction);
+                        _currentBalance -= transaction.Sum;
+                        Console.WriteLine("The transaction was deleted successfully");
+                        return true;
+                    }
                 }
                 return false;
             }
             
-            /*public void AddCategory(Category category)
+            public void ChangeAvailabilityOfCategory(string categoryName, bool availability)
             {
-                _categories.Add(category);
-            }
-            
-            public void DeleteCategory(string categoryName)
-            {
-                var response = false;
-                foreach (var category in Categories)
+                int index = 0;
+                foreach (var category in _owner.Categories)
                 {
                     if (category.Name.Equals(categoryName))
                     {
-                        _categories.Remove(category);
-                        response = true;
-                        break;
+                        _availabilityOfCategories[index] = availability;
+                        Console.WriteLine("Availability of the category was changed successfully");
+                        return;
                     }
+                    index++;
                 }
-                if (!response)
-                {
-                    Console.WriteLine("The category is not found");
-                }
-                else
-                {
-                    Console.WriteLine("The category was deleted successfully");
-                }
-            }*/
+                Console.WriteLine("The category is not found");
+            }
 
-            double generalSumOfIncomeForMonth()
+            public double GeneralSumOfIncomeForMonth()
             {
                 double result = 0;
                 int currMonth = DateTime.Now.Month;
@@ -366,7 +449,7 @@ namespace ControlSpending
                 return result;
             }
             
-            double generalSumOfSpendingsForMonth()
+            public double GeneralSumOfSpendingsForMonth()
             {
                 double result = 0;
                 int currMonth = DateTime.Now.Month;
@@ -383,7 +466,7 @@ namespace ControlSpending
                 return Math.Abs(result);
             }
 
-            public void showTransactions(int start = 0, int finish = 9)
+            public void ShowTransactions(int start = 0, int finish = 9)
             {
                 int lastIndexOfTrans = Transactions.Count - 1;
                 if (start < 0 || finish < 0 || finish < start || start > lastIndexOfTrans)
@@ -408,6 +491,18 @@ namespace ControlSpending
                         {
                             break;
                         }
+                    }
+                }
+            }
+
+            public void showAvailableCategories()
+            {
+                foreach (var category in _owner.Categories)
+                {
+                    if (IsAvailable(category))
+                    {
+                        Console.WriteLine(category);
+                        return;
                     }
                 }
             }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace ControlSpending
 {
     // Class Category keeps the name, description, color and icon.
@@ -7,7 +9,7 @@ namespace ControlSpending
         private string _name;
         private string _description;
         private string _color;
-        private string _icon;
+        private FileInfo _icon;
 
         public string Name
         {
@@ -27,7 +29,7 @@ namespace ControlSpending
             set { _color = value; }
         }
 
-        public string Icon
+        public FileInfo Icon
         {
             get { return _icon; } 
             set { _icon = value; }
@@ -35,12 +37,12 @@ namespace ControlSpending
 
         public Category() { }
 
-        public Category(string name, string description, string color, string icon)
+        public Category(string name, string description, string color, string iconPath)
         {
             _name = name;
             _description = description;
             _color = color;
-            _icon = icon;
+            _icon = new FileInfo(iconPath);
         }
 
         public override bool Validate()
@@ -53,7 +55,7 @@ namespace ControlSpending
                 result = false;
             if (String.IsNullOrWhiteSpace(Color))
                 result = false;
-            if (String.IsNullOrWhiteSpace(Icon))
+            if (Icon == null)
                 result = false;
 
             return result;

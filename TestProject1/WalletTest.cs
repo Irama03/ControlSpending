@@ -7,8 +7,9 @@ namespace ControlSpendingTests
 {
     public class WalletTest
     {
+        //Method FindTransaction() should be private
         [Fact]
-        public void FindTransactionTest()
+        public void DeleteTransactionTest() //public void FindTransactionTest()
         {
             //Arrange
             var wallet = new Wallet()
@@ -38,11 +39,20 @@ namespace ControlSpendingTests
                    Date = new DateTime(2020, 1, 15),
                    Files = null
                });
-            var expected = transactions[1];
+            /*var expected = transactions[1];
 
             //Act
             wallet.Transactions = transactions;
-            var actual = wallet.FindTransaction(2);
+            /*var actual = wallet.FindTransaction(2);
+
+            //Assert
+            Assert.Equal(expected, actual);*/
+
+            var expected = true;
+                
+            //Act
+            wallet.Transactions = transactions;
+            var actual = wallet.DeleteTransaction(2);
 
             //Assert
             Assert.Equal(expected, actual);

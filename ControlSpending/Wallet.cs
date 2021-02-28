@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ControlSpending
 {
@@ -8,7 +9,7 @@ namespace ControlSpending
     public class Wallet : Entity
     {
         private string _name;
-        private double _initialBalance = 0;
+        private double _initialBalance;
         private double _currentBalance;
         private string _description;
         private string _mainCurrency;
@@ -60,7 +61,7 @@ namespace ControlSpending
         
         public Wallet()
         {
-            _currentBalance = _initialBalance;
+            //_currentBalance = _initialBalance = 0;
             _transactions = new List<Transaction>();
             _categories = new List<Category>();
         }
@@ -77,7 +78,7 @@ namespace ControlSpending
             _categories = categories;
         }
 
-        public Transaction FindTransaction(int transactionId)
+        private Transaction FindTransaction(int transactionId)
         {
             foreach (var transaction in Transactions)
             {
@@ -94,7 +95,7 @@ namespace ControlSpending
         public void AddTransaction(Transaction transaction)
         {
             _transactions.Add(transaction);
-            //_currentBalance += transaction.Sum;
+            _currentBalance += transaction.Sum;
         }
 
         /*public Transaction getTransaction(string transactionName)
@@ -122,29 +123,91 @@ namespace ControlSpending
                 Console.WriteLine("The transaction was deleted successfully");
             }
         }*/
-        
-        //TODO: Write other edit-methods of transactions
+
+        public void EditIdOfTransaction(int transactionId, int newId)
+        {
+            var transaction = FindTransaction(transactionId);
+            if (transaction != null)
+            {
+                transaction.Id = newId;
+                Console.WriteLine("Id of the transaction was edited successfully");
+            }
+        }
 
         public void EditSumOfTransaction(int transactionId, double newSum)
         {
-            Transaction transaction = FindTransaction(transactionId);
+            var transaction = FindTransaction(transactionId);
             if (transaction != null)
             {
-                //transaction.Sum = newSum;
-                //_currentBalance += transaction.Sum;
+                transaction.Sum = newSum;
+                _currentBalance += transaction.Sum;
                 Console.WriteLine("Sum of the transaction was edited successfully");
             }
         }
         
-        public void DeleteTransaction(int transactionId)
+        public void EditCurrencyOfTransaction(int transactionId, string newCurrency)
+        {
+            var transaction = FindTransaction(transactionId);
+            if (transaction != null)
+            {
+                transaction.Currency = newCurrency;
+                Console.WriteLine("Currency of the transaction was edited successfully");
+            }
+        }
+        
+        public void EditDescriptionOfTransaction(int transactionId, string newDescription)
+        {
+            var transaction = FindTransaction(transactionId);
+            if (transaction != null)
+            {
+                transaction.Description = newDescription;
+                Console.WriteLine("Description of the transaction was edited successfully");
+            }
+        }
+        
+        public void EditDateOfTransaction(int transactionId, DateTime newDate)
+        {
+            var transaction = FindTransaction(transactionId);
+            if (transaction != null)
+            {
+                transaction.Date = newDate;
+                Console.WriteLine("Date of the transaction was edited successfully");
+            }
+        }
+        
+        public void EditFilesOfTransaction(int transactionId, List<FileInfo> newFiles)
+        {
+            var transaction = FindTransaction(transactionId);
+            if (transaction != null)
+            {
+                transaction.Files = newFiles;
+                Console.WriteLine("Files of the transaction were edited successfully");
+            }
+        }
+        
+        //Should AddFile() in Transaction be private?
+        
+        /*public void AddFileToTransaction(int transactionId, FileInfo newFile)
+        {
+            var transaction = FindTransaction(transactionId);
+            if (transaction != null)
+            {
+                transaction.AddFile(newFile);
+                Console.WriteLine("New file was added to the transaction successfully");
+            }
+        }*/
+        
+        public bool DeleteTransaction(int transactionId)
         {
             Transaction transaction = FindTransaction(transactionId);
             if (transaction != null)
             {
                 _transactions.Remove(transaction);
-                //_currentBalance -= transaction.Sum;
+                _currentBalance -= transaction.Sum;
                 Console.WriteLine("The transaction was deleted successfully");
+                return true;
             }
+            return false;
         }
         
         public void AddCategory(Category category)

@@ -1,5 +1,6 @@
 ﻿using ControlSpending;
 using System;
+using System.IO;
 using Xunit;
 
 namespace ControlSpendingTests
@@ -15,7 +16,7 @@ namespace ControlSpendingTests
                 Name = "food",
                 Description = "new category food",
                 Color = "red",
-                Icon = "apple"
+                Icon = new FileInfo("apple")
             };
 
             //Act
@@ -33,7 +34,7 @@ namespace ControlSpendingTests
             {
                 Description = "new category food",
                 Color = "red",
-                Icon = "apple"
+                Icon = new FileInfo("apple")
             };
 
             //Act
@@ -51,7 +52,7 @@ namespace ControlSpendingTests
             {
                 Name = "food",
                 Color = "red",
-                Icon = "apple"
+                Icon = new FileInfo("apple")
             };
 
             //Act
@@ -69,7 +70,7 @@ namespace ControlSpendingTests
             {
                 Name = "food",
                 Description = "new category food",
-                Icon = "apple"
+                Icon = new FileInfo("apple")
             };
 
             //Act

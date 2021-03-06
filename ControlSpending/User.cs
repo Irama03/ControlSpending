@@ -32,10 +32,10 @@ namespace ControlSpending
             }
         }
 
-        public string Name
-        {
-            get { return _name; }
-            set
+        public string Name 
+        { 
+            get { return _name; } 
+            set 
             {
                 if (!String.IsNullOrWhiteSpace(value))
                 {
@@ -45,14 +45,14 @@ namespace ControlSpending
                 {
                     Console.WriteLine("Invalid value of Name!");
                 }
-            }
+            } 
         }
 
-        public string Surname
-        {
-            get { return _surname; }
-            set
-            {
+        public string Surname 
+        { 
+            get { return _surname; } 
+            set 
+            { 
                 if (!String.IsNullOrWhiteSpace(value))
                 {
                     _surname = value;
@@ -61,13 +61,13 @@ namespace ControlSpending
                 {
                     Console.WriteLine("Invalid value of Surname!");
                 }
-            }
+            } 
         }
 
-        public string Email
-        {
-            get { return _email; }
-            set
+        public string Email 
+        { 
+            get { return _email; } 
+            set 
             {
                 if (!String.IsNullOrWhiteSpace(value))
                 {
@@ -77,7 +77,7 @@ namespace ControlSpending
                 {
                     Console.WriteLine("Invalid value of Email!");
                 }
-            }
+            } 
         }
 
         public List<Wallet> Wallets
@@ -91,7 +91,7 @@ namespace ControlSpending
             set { _categories = value; }
         }
 
-        public string FullName
+        public string FullName 
         {
             get
             {
@@ -126,7 +126,7 @@ namespace ControlSpending
         {
             return FullName;
         }
-
+        
         // Class Wallet keeps the name, initial wallet balance, description and base currency. 
         // Transactions are added to it. For each wallet, you can specify a list of categories that are available in it for transactions.
         public class Wallet : Entity
@@ -136,7 +136,7 @@ namespace ControlSpending
             private decimal _initialBalance;
             private decimal _currentBalance;
             private string _description;
-            private string _mainCurrency;
+            private Currencies _mainCurrency;
             private List<Transaction> _transactions;
             //private List<Category> _categories;
             private List<bool> _availabilityOfCategories;
@@ -172,7 +172,7 @@ namespace ControlSpending
                     }
                 }
             }
-
+            
             public decimal InitialBalance
             {
                 get { return _initialBalance; }
@@ -183,40 +183,30 @@ namespace ControlSpending
                     _currentBalance += _initialBalance;
                 }
             }
-
+            
             public decimal CurrentBalance
             {
                 get { return _currentBalance; }
             }
-
+            
             public string Description
             {
                 get { return _description; }
                 set { _description = value; }
             }
-
-            public string MainCurrency
+            
+            public Currencies MainCurrency
             {
                 get { return _mainCurrency; }
-                set
-                {
-                    if (!String.IsNullOrWhiteSpace(value))
-                    {
-                        _mainCurrency = value;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid value of MainCurrency!");
-                    }
-                }
+                set { _mainCurrency = value; }
             }
-
+            
             public List<Transaction> Transactions
             {
                 get { return _transactions; }
                 set { _transactions = value; }
             }
-
+            
             /*public List<Category> Categories
             {
                 get
@@ -224,7 +214,7 @@ namespace ControlSpending
                     return _categories;
                 }
             }*/
-
+            
             public Wallet(User user)
             {
                 _owner = user;
@@ -234,15 +224,15 @@ namespace ControlSpending
                 _availabilityOfCategories = new List<bool>();
                 if (_owner.Categories != null)
                 {
-                    for (int i = 0; i < _owner._categories.Count; i++)
+                    for(int i = 0; i < _owner._categories.Count; i++)
                     {
                         _availabilityOfCategories.Add(true);
                     }
                 }
             }
 
-            public Wallet(User user, string name, decimal initialBalance, string description,
-                string mainCurrency)//, List<Category> categories)
+            public Wallet(User user, string name, decimal initialBalance, string description, 
+                Currencies mainCurrency)//, List<Category> categories)
             {
                 _owner = user;
                 _name = name;
@@ -255,7 +245,7 @@ namespace ControlSpending
                 _availabilityOfCategories = new List<bool>();
                 if (_owner.Categories != null)
                 {
-                    for (int i = 0; i < _owner._categories.Count; i++)
+                    for(int i = 0; i < _owner._categories.Count; i++)
                     {
                         _availabilityOfCategories.Add(true);
                     }
@@ -266,7 +256,7 @@ namespace ControlSpending
                 }
             }
 
-            public Wallet() { }
+            public Wallet() {}
 
             private bool IsAvailable(Category category)
             {
@@ -283,7 +273,7 @@ namespace ControlSpending
                 return result;
             }
 
-            private Transaction FindTransaction(int transactionId)
+            public Transaction FindTransaction(int transactionId)
             {
                 if (TransactionIdIsValid(transactionId))
                 {
@@ -315,14 +305,14 @@ namespace ControlSpending
                     Console.WriteLine("Transaction with unknown Category can't be added!");
                     return;
                 }
-                //if (!IsAvailable(transaction.Category))
-                //{
-                //    Console.WriteLine("Category of the transaction is unavailable. "
-                //                      + "Transaction can't be added!");
-                //    return;
-                //}
+                if (!IsAvailable(transaction.Category))
+                {
+                    Console.WriteLine("Category of the transaction is unavailable. " 
+                                      + "Transaction can't be added!");
+                    return;
+                }
                 _transactions.Add(transaction);
-                _currentBalance += (decimal)transaction.Sum;
+                _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                 Console.WriteLine("The transaction was added successfully");
             }
 
@@ -348,32 +338,25 @@ namespace ControlSpending
                     {
                         _currentBalance -= transaction.Sum;
                         transaction.Sum = newSum;
-                        _currentBalance += transaction.Sum;
+                        _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         Console.WriteLine("Sum of the transaction was edited successfully");
                     }
                 }
             }
-
-            public void EditCurrencyOfTransaction(int transactionId, string newCurrency)
+            
+            public void EditCurrencyOfTransaction(int transactionId, Currencies newCurrency)
             {
                 if (TransactionIdIsValid(transactionId))
                 {
-                    if (!String.IsNullOrWhiteSpace(newCurrency))
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
                     {
-                        var transaction = FindTransaction(transactionId);
-                        if (transaction != null)
-                        {
-                            transaction.Currency = newCurrency;
-                            Console.WriteLine("Currency of the transaction was edited successfully");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid value of newCurrency!");
+                        transaction.Currency = newCurrency;
+                        Console.WriteLine("Currency of the transaction was edited successfully");
                     }
                 }
             }
-
+            
             public void EditDescriptionOfTransaction(int transactionId, string newDescription)
             {
                 if (TransactionIdIsValid(transactionId))
@@ -393,7 +376,7 @@ namespace ControlSpending
                     }
                 }
             }
-
+            
             public void EditDateOfTransaction(int transactionId, DateTime newDate)
             {
                 if (TransactionIdIsValid(transactionId))
@@ -406,7 +389,7 @@ namespace ControlSpending
                     }
                 }
             }
-
+            
             public void EditCategoryOfTransaction(int transactionId, Category newCategory)
             {
                 if (TransactionIdIsValid(transactionId))
@@ -418,7 +401,7 @@ namespace ControlSpending
                     }
                     if (!IsAvailable(newCategory))
                     {
-                        Console.WriteLine("New category of the transaction is unavailable. "
+                        Console.WriteLine("New category of the transaction is unavailable. " 
                                           + "Category of the Transaction can't be changed!");
                         return;
                     }
@@ -443,9 +426,9 @@ namespace ControlSpending
                     }
                 }
             }
-
+            
             //Should AddFile() in Transaction be private?
-
+            
             /*public void AddFileToTransaction(int transactionId, FileInfo newFile)
             {
             if (transactionIdIsValid(transactionId))
@@ -458,7 +441,7 @@ namespace ControlSpending
                     }
                 }
             }*/
-
+            
             public bool DeleteTransaction(int transactionId)
             {
                 if (TransactionIdIsValid(transactionId))
@@ -467,14 +450,14 @@ namespace ControlSpending
                     if (transaction != null)
                     {
                         _transactions.Remove(transaction);
-                        _currentBalance -= transaction.Sum;
+                        _currentBalance -= TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         Console.WriteLine("The transaction was deleted successfully");
                         return true;
                     }
                 }
                 return false;
             }
-
+            
             public void ChangeAvailabilityOfCategory(string categoryName, bool availability)
             {
                 int index = 0;
@@ -501,13 +484,13 @@ namespace ControlSpending
                     {
                         if (transaction.Sum > 0)
                         {
-                            result += transaction.Sum;
+                            result += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         }
                     }
                 }
                 return result;
             }
-
+            
             public decimal GeneralSumOfSpendingsForMonth()
             {
                 decimal result = 0;
@@ -518,7 +501,7 @@ namespace ControlSpending
                     {
                         if (transaction.Sum < 0)
                         {
-                            result += transaction.Sum;
+                            result += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         }
                     }
                 }
@@ -576,9 +559,6 @@ namespace ControlSpending
                     result = false;
                 if (String.IsNullOrWhiteSpace(Description))
                     result = false;
-                if (String.IsNullOrWhiteSpace(MainCurrency))
-                    result = false;
-
                 return result;
             }
 

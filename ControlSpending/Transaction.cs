@@ -10,7 +10,7 @@ namespace ControlSpending
     {
         private int _id;
         private decimal _sum;
-        private string _currency;
+        private Currencies _currency;
         private string _description;
         private DateTime? _date;
         private Category _category;
@@ -22,7 +22,7 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, decimal sum, string currency, string description, DateTime? date, Category category)
+        public Transaction(int id, decimal sum, Currencies currency, string description, DateTime? date, Category category)
         {
             _id = id;
             _sum = sum;
@@ -59,20 +59,10 @@ namespace ControlSpending
             set { _sum = value; }
         }
 
-        public string Currency
+        public Currencies Currency
         {
             get { return _currency; }
-            set
-            {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    _currency = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Currency!");
-                }
-            }
+            set { _currency = value; }
         }
 
         public string Description
@@ -131,8 +121,6 @@ namespace ControlSpending
             var result = true;
 
             if (Id <= 0)
-                result = false;
-            if (String.IsNullOrWhiteSpace(Currency))
                 result = false;
             if (Date == null)
                 result = false;

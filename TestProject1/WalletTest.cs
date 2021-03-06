@@ -10,7 +10,7 @@ namespace ControlSpendingTests
     public class WalletTest
     {
         [Fact]
-        public void DeleteTransactionTest() 
+        public void DeleteTransactionTest()
         {
             //Arrange
             var category = new Category()

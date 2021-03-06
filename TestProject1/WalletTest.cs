@@ -1,5 +1,7 @@
 ﻿using ControlSpending;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using Xunit;
 using System.Collections.Generic;
 using static ControlSpending.User;
@@ -26,8 +28,8 @@ namespace ControlSpendingTests
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Files = null
-            };
+                Files = new List<FileInfo>()
+        };
             var transaction2 = new Transaction()
             {
                 Id = 2,
@@ -35,8 +37,8 @@ namespace ControlSpendingTests
                 Currency = "UAH",
                 Description = "transaction in UAH",
                 Date = new DateTime(2020, 1, 15),
-                Files = null
-            };
+                Files = new List<FileInfo>()
+        };
             transactions.Add(transaction1);
             transactions.Add(transaction2);
 

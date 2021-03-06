@@ -16,7 +16,7 @@ namespace ControlSpendingTests
                 Name = "food",
                 Description = "new category food",
                 Color = "red",
-                Icon = null
+                Icon = new FileInfo("apple")
             };
             var transaction = new Transaction()
             {
@@ -44,7 +44,7 @@ namespace ControlSpendingTests
                 Name = "food",
                 Description = "new category food",
                 Color = "red",
-                Icon = null
+                Icon = new FileInfo("apple")
             };
             var transaction = new Transaction()
             {
@@ -71,7 +71,7 @@ namespace ControlSpendingTests
                 Name = "food",
                 Description = "new category food",
                 Color = "red",
-                Icon = null
+                Icon = new FileInfo("apple")
             };
             var transaction = new Transaction()
             {
@@ -98,7 +98,7 @@ namespace ControlSpendingTests
                 Name = "food",
                 Description = "new category food",
                 Color = "red",
-                Icon = null
+                Icon = new FileInfo("apple")
             };
             var transaction = new Transaction()
             {

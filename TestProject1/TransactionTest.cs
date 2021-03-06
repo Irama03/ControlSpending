@@ -11,6 +11,13 @@ namespace ControlSpendingTests
         public void ValidateTest()
         {
             //Arrange
+            var category = new Category()
+            {
+                Name = "food",
+                Description = "new category food",
+                Color = "red",
+                Icon = null
+            };
             var transaction = new Transaction()
             {
                 Id = 1,
@@ -18,7 +25,7 @@ namespace ControlSpendingTests
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
+                Category = category
             };
 
             //Act
@@ -32,13 +39,20 @@ namespace ControlSpendingTests
         public void ValidateNoIdTest()
         {
             //Arrange
-            var transaction = new Transaction() 
+            var category = new Category()
+            {
+                Name = "food",
+                Description = "new category food",
+                Color = "red",
+                Icon = null
+            };
+            var transaction = new Transaction()
             {
                 Sum = 275.89m,
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") },
+                Category = category
             };
 
             //Act
@@ -52,33 +66,20 @@ namespace ControlSpendingTests
         public void ValidateNoCurrencyTest()
         {
             //Arrange
+            var category = new Category()
+            {
+                Name = "food",
+                Description = "new category food",
+                Color = "red",
+                Icon = null
+            };
             var transaction = new Transaction()
             {
                 Id = 1,
                 Sum = 275.89m,
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
-                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
-            };
-
-            //Act
-            var actual = transaction.Validate();
-
-            //Assert
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateNoDescriptionTest()
-        {
-            //Arrange
-            var transaction = new Transaction()
-            {
-                Id = 1,
-                Sum = 275.89m,
-                Currency = "dollar",
-                Date = new DateTime(2021, 7, 20),
-                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
+                Category = category
             };
 
             //Act
@@ -92,13 +93,20 @@ namespace ControlSpendingTests
         public void ValidateNoDateTest()
         {
             //Arrange
+            var category = new Category()
+            {
+                Name = "food",
+                Description = "new category food",
+                Color = "red",
+                Icon = null
+            };
             var transaction = new Transaction()
             {
                 Id = 1,
                 Sum = 275.89m,
                 Currency = "dollar",
                 Description = "new transaction",
-                Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
+                Category = category
             };
 
             //Act

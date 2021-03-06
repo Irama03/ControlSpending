@@ -175,17 +175,7 @@ namespace ControlSpending
             public string Description
             {
                 get { return _description; }
-                set
-                {
-                    if (!String.IsNullOrWhiteSpace(value))
-                    {
-                        _description = value;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid value of Description!");
-                    }
-                }
+                set { _description = value; }
             }
             
             public string MainCurrency
@@ -276,7 +266,7 @@ namespace ControlSpending
                 return result;
             }
 
-            private Transaction FindTransaction(int transactionId)
+            public Transaction FindTransaction(int transactionId)
             {
                 if (TransactionIdIsValid(transactionId))
                 {
@@ -303,17 +293,17 @@ namespace ControlSpending
                         return;
                     }
                 }
-                if (!(_owner.Categories.Contains(transaction.Category)))
-                {
-                    Console.WriteLine("Transaction with unknown Category can't be added!");
-                    return;
-                }
-                if (!IsAvailable(transaction.Category))
-                {
-                    Console.WriteLine("Category of the transaction is unavailable. " 
-                                      + "Transaction can't be added!");
-                    return;
-                }
+                //if (!(_owner.Categories.Contains(transaction.Category)))
+                //{
+                //    Console.WriteLine("Transaction with unknown Category can't be added!");
+                //    return;
+                //}
+                //if (!IsAvailable(transaction.Category))
+                //{
+                //    Console.WriteLine("Category of the transaction is unavailable. " 
+                //                      + "Transaction can't be added!");
+                //    return;
+                //}
                 _transactions.Add(transaction);
                 _currentBalance += (decimal)transaction.Sum;
                 Console.WriteLine("The transaction was added successfully");

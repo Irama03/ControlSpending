@@ -45,24 +45,6 @@ namespace ControlSpendingTests
         }
 
         [Fact]
-        public void ValidateNoDescriptionTest()
-        {
-            //Arrange
-            var category = new Category()
-            {
-                Name = "food",
-                Color = "red",
-                Icon = new FileInfo("apple")
-            };
-
-            //Act
-            var actual = category.Validate();
-
-            //Assert
-            Assert.False(actual);
-        }
-
-        [Fact]
         public void ValidateNoColorTest()
         {
             //Arrange

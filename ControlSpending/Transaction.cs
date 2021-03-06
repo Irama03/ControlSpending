@@ -42,7 +42,7 @@ namespace ControlSpending
             get { return _id; }
             set
             {
-                if (value <= 0)
+                if (value > 0)
                 {
                     _id = value;
                 }
@@ -78,17 +78,7 @@ namespace ControlSpending
         public string Description
         {
             get { return _description; }
-            set
-            {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    _description = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Description!");
-                }
-            }
+            set { _description = value; }
         }
 
         public DateTime? Date
@@ -143,8 +133,6 @@ namespace ControlSpending
             if (Id <= 0)
                 result = false;
             if (String.IsNullOrWhiteSpace(Currency))
-                result = false;
-            if (String.IsNullOrWhiteSpace(Description))
                 result = false;
             if (Date == null)
                 result = false;

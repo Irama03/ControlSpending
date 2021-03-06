@@ -30,17 +30,7 @@ namespace ControlSpending
         public string Description
         {
             get { return _description; }
-            set
-            {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    _description = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Description!");
-                }
-            } 
+            set { _description = value; } 
         }
 
         public string Color
@@ -94,8 +84,6 @@ namespace ControlSpending
             var result = true;
 
             if (String.IsNullOrWhiteSpace(Name))
-                result = false;
-            if (String.IsNullOrWhiteSpace(Description))
                 result = false;
             if (String.IsNullOrWhiteSpace(Color))
                 result = false;

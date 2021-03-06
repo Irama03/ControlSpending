@@ -19,35 +19,33 @@ namespace ControlSpendingTests
                 MainCurrency = "euro",
             };
             List<Transaction> transactions = new List<Transaction>();
-            transactions.Add(
-                new Transaction
-                {
-                    Id = 1,
-                    Sum = 275.89m,
-                    Currency = "dollar",
-                    Description = "new transaction",
-                    Date = new DateTime(2021, 7, 20),
-                    Files = null
-                });
-            transactions.Add(
-               new Transaction
-               {
-                   Id = 2,
-                   Sum = 1.11m,
-                   Currency = "UAH",
-                   Description = "transaction in UAH",
-                   Date = new DateTime(2020, 1, 15),
-                   Files = null
-               });
+            var transaction1 = new Transaction()
+            {
+                Id = 1,
+                Sum = 275.89m,
+                Currency = "dollar",
+                Description = "new transaction",
+                Date = new DateTime(2021, 7, 20),
+                Files = null
+            };
+            var transaction2 = new Transaction()
+            {
+                Id = 2,
+                Sum = 1.11m,
+                Currency = "UAH",
+                Description = "transaction in UAH",
+                Date = new DateTime(2020, 1, 15),
+                Files = null
+            };
+            transactions.Add(transaction1);
+            transactions.Add(transaction2);
 
-            var expected = true;
-                
             //Act
             wallet.Transactions = transactions;
-            var actual = wallet.DeleteTransaction(2);
+            var actual = wallet.DeleteTransaction(1);
 
             //Assert
-            Assert.Equal(expected, actual);
+            Assert.True(actual);
         }
 
         [Fact]
@@ -77,24 +75,6 @@ namespace ControlSpendingTests
             {
                 InitialBalance = 505.3m,
                 Description = "new wallet",
-                MainCurrency = "euro"
-            };
-
-            //Act
-            var actual = wallet.Validate();
-
-            //Assert
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateNoDescriptionTest()
-        {
-            //Arrange
-            var wallet = new Wallet()
-            {
-                Name = "Wallet1",
-                InitialBalance = 505.3m,
                 MainCurrency = "euro"
             };
 

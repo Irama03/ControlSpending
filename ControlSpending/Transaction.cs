@@ -144,7 +144,7 @@ namespace ControlSpending
 
         public override string ToString()
         {
-            return $"{Id}, {Sum}, {Currency}, {Description}, {Date}";
+            return $"{Id}, {Sum}, {Currency}, {Description}, {Date}, Category ({Category})";
         }
     }
 }

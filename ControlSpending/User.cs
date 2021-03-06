@@ -132,8 +132,8 @@ namespace ControlSpending
         {
             private User _owner;
             private string _name;
-            private double _initialBalance;
-            private double _currentBalance;
+            private decimal _initialBalance;
+            private decimal _currentBalance;
             private string _description;
             private string _mainCurrency;
             private List<Transaction> _transactions;
@@ -156,7 +156,7 @@ namespace ControlSpending
                 }
             }
             
-            public double InitialBalance
+            public decimal InitialBalance
             {
                 get { return _initialBalance; }
                 set
@@ -167,7 +167,7 @@ namespace ControlSpending
                 }
             }
             
-            public double CurrentBalance
+            public decimal CurrentBalance
             {
                 get { return _currentBalance; }
             }
@@ -234,7 +234,7 @@ namespace ControlSpending
                 }
             }
 
-            public Wallet(User user, string name, double initialBalance, string description, 
+            public Wallet(User user, string name, decimal initialBalance, string description, 
                 string mainCurrency)//, List<Category> categories)
             {
                 _owner = user;
@@ -315,7 +315,7 @@ namespace ControlSpending
                     return;
                 }*/
                 _transactions.Add(transaction);
-                _currentBalance += transaction.Sum;
+                _currentBalance += (decimal)transaction.Sum;
                 Console.WriteLine("The transaction was added successfully");
             }
 
@@ -332,7 +332,7 @@ namespace ControlSpending
                 }
             }
 
-            public void EditSumOfTransaction(int transactionId, double newSum)
+            public void EditSumOfTransaction(int transactionId, decimal newSum)
             {
                 if (TransactionIdIsValid(transactionId))
                 {
@@ -465,9 +465,9 @@ namespace ControlSpending
                 Console.WriteLine("The category is not found");
             }
 
-            public double GeneralSumOfIncomeForMonth()
+            public decimal GeneralSumOfIncomeForMonth()
             {
-                double result = 0;
+                decimal result = 0;
                 int currMonth = DateTime.Now.Month;
                 foreach (var transaction in Transactions)
                 {
@@ -482,9 +482,9 @@ namespace ControlSpending
                 return result;
             }
             
-            public double GeneralSumOfSpendingsForMonth()
+            public decimal GeneralSumOfSpendingsForMonth()
             {
-                double result = 0;
+                decimal result = 0;
                 int currMonth = DateTime.Now.Month;
                 foreach (var transaction in Transactions)
                 {

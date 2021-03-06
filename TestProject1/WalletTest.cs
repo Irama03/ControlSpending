@@ -14,7 +14,7 @@ namespace ControlSpendingTests
             //Arrange
             Wallet wallet = new Wallet()
             {
-                InitialBalance = 505.3,
+                InitialBalance = 505.3m,
                 Description = "new wallet",
                 MainCurrency = "euro",
             };
@@ -23,7 +23,7 @@ namespace ControlSpendingTests
                 new Transaction
                 {
                     Id = 1,
-                    Sum = 275.89,
+                    Sum = 275.89m,
                     Currency = "dollar",
                     Description = "new transaction",
                     Date = new DateTime(2021, 7, 20),
@@ -33,7 +33,7 @@ namespace ControlSpendingTests
                new Transaction
                {
                    Id = 2,
-                   Sum = 1.11,
+                   Sum = 1.11m,
                    Currency = "UAH",
                    Description = "transaction in UAH",
                    Date = new DateTime(2020, 1, 15),
@@ -57,7 +57,7 @@ namespace ControlSpendingTests
             var wallet = new Wallet() 
             { 
                 Name = "Wallet1", 
-                InitialBalance = 505.3, 
+                InitialBalance = 505.3m, 
                 Description = "new wallet", 
                 MainCurrency = "euro"
             };
@@ -75,7 +75,7 @@ namespace ControlSpendingTests
             //Arrange
             var wallet = new Wallet()
             {
-                InitialBalance = 505.3,
+                InitialBalance = 505.3m,
                 Description = "new wallet",
                 MainCurrency = "euro"
             };
@@ -94,7 +94,7 @@ namespace ControlSpendingTests
             var wallet = new Wallet()
             {
                 Name = "Wallet1",
-                InitialBalance = 505.3,
+                InitialBalance = 505.3m,
                 MainCurrency = "euro"
             };
 
@@ -112,7 +112,7 @@ namespace ControlSpendingTests
             var wallet = new Wallet()
             {
                 Name = "Wallet1",
-                InitialBalance = 505.3,
+                InitialBalance = 505.3m,
                 Description = "new wallet"
             };
 

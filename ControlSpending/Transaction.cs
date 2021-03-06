@@ -9,7 +9,7 @@ namespace ControlSpending
     public class Transaction : Entity
     {
         private int _id;
-        private double _sum;
+        private decimal _sum;
         private string _currency;
         private string _description;
         private DateTime? _date;
@@ -22,7 +22,7 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, double sum, string currency, string description, DateTime? date, Category category)
+        public Transaction(int id, decimal sum, string currency, string description, DateTime? date, Category category)
         {
             _id = id;
             _sum = sum;
@@ -53,7 +53,7 @@ namespace ControlSpending
             }
         }
 
-        public double Sum
+        public decimal Sum
         {
             get { return _sum; }
             set { _sum = value; }

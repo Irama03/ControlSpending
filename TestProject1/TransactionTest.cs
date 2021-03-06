@@ -14,7 +14,7 @@ namespace ControlSpendingTests
             var transaction = new Transaction()
             {
                 Id = 1,
-                Sum = 275.89,
+                Sum = 275.89m,
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
@@ -34,7 +34,7 @@ namespace ControlSpendingTests
             //Arrange
             var transaction = new Transaction() 
             {
-                Sum = 275.89,
+                Sum = 275.89m,
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
@@ -55,7 +55,7 @@ namespace ControlSpendingTests
             var transaction = new Transaction()
             {
                 Id = 1,
-                Sum = 275.89,
+                Sum = 275.89m,
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
                 Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
@@ -75,7 +75,7 @@ namespace ControlSpendingTests
             var transaction = new Transaction()
             {
                 Id = 1,
-                Sum = 275.89,
+                Sum = 275.89m,
                 Currency = "dollar",
                 Date = new DateTime(2021, 7, 20),
                 Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
@@ -95,7 +95,7 @@ namespace ControlSpendingTests
             var transaction = new Transaction()
             {
                 Id = 1,
-                Sum = 275.89,
+                Sum = 275.89m,
                 Currency = "dollar",
                 Description = "new transaction",
                 Category = { Name = "food", Description = "new category food", Color = "red", Icon = new FileInfo("apple") }
@@ -115,7 +115,7 @@ namespace ControlSpendingTests
             var transaction = new Transaction()
             {
                 Id = 1,
-                Sum = 275.89,
+                Sum = 275.89m,
                 Currency = "dollar",
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20)

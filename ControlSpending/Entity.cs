@@ -36,7 +36,7 @@ namespace ControlSpending
                     return sum;
             }
         }
-
+        
         public static decimal TransformCurrencyFromUSD(Currencies to, decimal sum)
         {
             switch (to)
@@ -57,7 +57,7 @@ namespace ControlSpending
                     return sum;
             }
         }
-
+        
         public static decimal TransformCurrency(Currencies from, Currencies to, decimal sum)
         {
             return TransformCurrencyFromUSD(to, TransformCurrencyToUSD(from, sum));

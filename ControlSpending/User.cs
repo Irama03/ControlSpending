@@ -136,7 +136,7 @@ namespace ControlSpending
             private decimal _initialBalance;
             private decimal _currentBalance;
             private string _description;
-            private string _mainCurrency;
+            private Currencies _mainCurrency;
             private List<Transaction> _transactions;
             //private List<Category> _categories;
             private List<bool> _availabilityOfCategories;
@@ -195,20 +195,10 @@ namespace ControlSpending
                 set { _description = value; }
             }
 
-            public string MainCurrency
+            public Currencies MainCurrency
             {
                 get { return _mainCurrency; }
-                set
-                {
-                    if (!String.IsNullOrWhiteSpace(value))
-                    {
-                        _mainCurrency = value;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid value of MainCurrency!");
-                    }
-                }
+                set { _mainCurrency = value; }
             }
 
             public List<Transaction> Transactions
@@ -242,7 +232,7 @@ namespace ControlSpending
             }
 
             public Wallet(User user, string name, decimal initialBalance, string description,
-                string mainCurrency)//, List<Category> categories)
+                Currencies mainCurrency)//, List<Category> categories)
             {
                 _owner = user;
                 _name = name;
@@ -283,7 +273,7 @@ namespace ControlSpending
                 return result;
             }
 
-            private Transaction FindTransaction(int transactionId)
+            public Transaction FindTransaction(int transactionId)
             {
                 if (TransactionIdIsValid(transactionId))
                 {
@@ -315,14 +305,14 @@ namespace ControlSpending
                     Console.WriteLine("Transaction with unknown Category can't be added!");
                     return;
                 }
-                //if (!IsAvailable(transaction.Category))
-                //{
-                //    Console.WriteLine("Category of the transaction is unavailable. "
-                //                      + "Transaction can't be added!");
-                //    return;
-                //}
+                if (!IsAvailable(transaction.Category))
+                {
+                    Console.WriteLine("Category of the transaction is unavailable. "
+                                      + "Transaction can't be added!");
+                    return;
+                }
                 _transactions.Add(transaction);
-                _currentBalance += (decimal)transaction.Sum;
+                _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                 Console.WriteLine("The transaction was added successfully");
             }
 
@@ -348,28 +338,21 @@ namespace ControlSpending
                     {
                         _currentBalance -= transaction.Sum;
                         transaction.Sum = newSum;
-                        _currentBalance += transaction.Sum;
+                        _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         Console.WriteLine("Sum of the transaction was edited successfully");
                     }
                 }
             }
 
-            public void EditCurrencyOfTransaction(int transactionId, string newCurrency)
+            public void EditCurrencyOfTransaction(int transactionId, Currencies newCurrency)
             {
                 if (TransactionIdIsValid(transactionId))
                 {
-                    if (!String.IsNullOrWhiteSpace(newCurrency))
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
                     {
-                        var transaction = FindTransaction(transactionId);
-                        if (transaction != null)
-                        {
-                            transaction.Currency = newCurrency;
-                            Console.WriteLine("Currency of the transaction was edited successfully");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid value of newCurrency!");
+                        transaction.Currency = newCurrency;
+                        Console.WriteLine("Currency of the transaction was edited successfully");
                     }
                 }
             }
@@ -467,7 +450,7 @@ namespace ControlSpending
                     if (transaction != null)
                     {
                         _transactions.Remove(transaction);
-                        _currentBalance -= transaction.Sum;
+                        _currentBalance -= TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         Console.WriteLine("The transaction was deleted successfully");
                         return true;
                     }
@@ -501,7 +484,7 @@ namespace ControlSpending
                     {
                         if (transaction.Sum > 0)
                         {
-                            result += transaction.Sum;
+                            result += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         }
                     }
                 }
@@ -518,7 +501,7 @@ namespace ControlSpending
                     {
                         if (transaction.Sum < 0)
                         {
-                            result += transaction.Sum;
+                            result += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         }
                     }
                 }
@@ -576,9 +559,6 @@ namespace ControlSpending
                     result = false;
                 if (String.IsNullOrWhiteSpace(Description))
                     result = false;
-                if (String.IsNullOrWhiteSpace(MainCurrency))
-                    result = false;
-
                 return result;
             }
 

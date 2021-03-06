@@ -10,7 +10,7 @@ namespace ControlSpendingTests
     public class WalletTest
     {
         [Fact]
-        public void DeleteTransactionTest() 
+        public void DeleteTransactionTest()
         {
             //Arrange
             var category = new Category()
@@ -36,7 +36,7 @@ namespace ControlSpendingTests
                 Date = new DateTime(2021, 7, 20),
                 Category = category,
                 Files = new List<FileInfo>()
-        };
+            };
             var transaction2 = new Transaction()
             {
                 Id = 2,
@@ -46,7 +46,7 @@ namespace ControlSpendingTests
                 Date = new DateTime(2020, 1, 15),
                 Category = category,
                 Files = new List<FileInfo>()
-        };
+            };
             transactions.Add(transaction1);
             transactions.Add(transaction2);
 
@@ -66,9 +66,9 @@ namespace ControlSpendingTests
             var wallet = new Wallet()
             {
                 Owner = owner,
-                Name = "Wallet1", 
-                InitialBalance = 505.3m, 
-                Description = "new wallet", 
+                Name = "Wallet1",
+                InitialBalance = 505.3m,
+                Description = "new wallet",
                 MainCurrency = "euro"
             };
 

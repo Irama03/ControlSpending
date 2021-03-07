@@ -149,33 +149,6 @@ namespace ControlSpending
            wallet.UsersId.Add(user.Id);
         }
 
-        //public void ShowOtherWallets()
-        //{
-        //    foreach (var wallet in OtherWallets)
-        //    {
-        //        Console.WriteLine(wallet);
-        //        return;
-        //    }
-        //}
-
-        //public void ShowMyWallets()
-        //{
-        //    foreach (var wallet in MyWallets)
-        //    {
-        //        Console.WriteLine(wallet);
-        //        return;
-        //    }
-        //}
-
-        //public void ShowCategories()
-        //{
-        //    foreach (var category in Categories)
-        //    {
-        //        Console.WriteLine(category);
-        //        return;
-        //    }
-        //}
-
         public string FullName 
         {
             get

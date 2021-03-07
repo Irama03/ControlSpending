@@ -107,6 +107,7 @@ namespace ControlSpending
             _owner = user;
             _id = id;
             _name = name;
+            _description = "";
             _initialBalance = initialBalance;
             _currentBalance = _initialBalance;
             _mainCurrency = mainCurrency;
@@ -363,9 +364,11 @@ namespace ControlSpending
         {
             decimal result = 0;
             int currMonth = DateTimeOffset.Now.Month;
+            int currYear = DateTimeOffset.Now.Year;
             foreach (var transaction in _transactions)
             {
-                if (transaction.Date != null && transaction.Date.Value.Month == currMonth)
+                if (transaction.Date != null && transaction.Date.Value.Month == currMonth
+                 && transaction.Date.Value.Year == currYear)
                 {
                     if (transaction.Sum > 0)
                     {
@@ -380,9 +383,11 @@ namespace ControlSpending
         {
             decimal result = 0;
             int currMonth = DateTimeOffset.Now.Month;
+            int currYear = DateTimeOffset.Now.Year;
             foreach (var transaction in _transactions)
             {
-                if (transaction.Date != null && transaction.Date.Value.Month == currMonth)
+                if (transaction.Date != null && transaction.Date.Value.Month == currMonth
+                  && transaction.Date.Value.Year == currYear)
                 {
                     if (transaction.Sum < 0)
                     {

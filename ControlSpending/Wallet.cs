@@ -127,12 +127,27 @@ namespace ControlSpending
             user.MyWallets.Add(this);
         }
 
+        public Transaction GetCopyOfTransaction(Guid transactionId)
+        {
+            var tr = FindTransaction(transactionId);
+            if (tr != null)
+            {
+                return new Transaction(tr.Id, tr.Sum, tr.Currency, tr.Date, tr.Category);
+            }
+            return null;
+        }
+        
+        public int TransactionsAmount()
+        {
+            return _transactions.Count;
+        }
+
         public bool IsAvailable(Category category)
         {
             return (_availabilityOfCategories[Owner.Categories.IndexOf(category)]);
         }
 
-        private bool userIsOwner(Guid userId)
+        private bool UserIsOwner(Guid userId)
         {
             bool result = (userId == Owner.Id);
             if (!result)
@@ -194,7 +209,7 @@ namespace ControlSpending
 
         public void EditIdOfTransaction(Guid transactionId, Guid newId, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId) && IsValidId(newId))
                 //{
@@ -210,7 +225,7 @@ namespace ControlSpending
 
         public void EditSumOfTransaction(Guid transactionId, decimal newSum, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -228,14 +243,16 @@ namespace ControlSpending
 
         public void EditCurrencyOfTransaction(Guid transactionId, Currencies newCurrency, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
+                        _currentBalance -= transaction.Sum;
                         transaction.Currency = newCurrency;
+                        _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         Console.WriteLine("Currency of the transaction was edited successfully");
                     }
                // }
@@ -244,7 +261,7 @@ namespace ControlSpending
 
         public void EditDescriptionOfTransaction(Guid transactionId, string newDescription, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -258,9 +275,9 @@ namespace ControlSpending
             }
         }
 
-        public void EditDateOfTransaction(Guid transactionId, DateTime newDate, Guid userId)
+        public void EditDateOfTransaction(Guid transactionId, DateTimeOffset newDate, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -276,7 +293,7 @@ namespace ControlSpending
 
         public void EditCategoryOfTransaction(Guid transactionId, Category newCategory, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -303,7 +320,7 @@ namespace ControlSpending
 
         public void EditFilesOfTransaction(Guid transactionId, List<FileInfo> newFiles, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -319,7 +336,7 @@ namespace ControlSpending
 
         public void AddFileToTransaction(Guid transactionId, string pathToNewFile, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -335,7 +352,7 @@ namespace ControlSpending
 
         public bool DeleteTransaction(Guid transactionId, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 //if (IsValidId(transactionId))
                 //{
@@ -354,7 +371,7 @@ namespace ControlSpending
 
         public void ChangeAvailabilityOfCategory(string categoryName, bool availability, Guid userId)
         {
-            if (userIsOwner(userId))
+            if (UserIsOwner(userId))
             {
                 int index = 0;
                 foreach (var category in Owner.Categories)

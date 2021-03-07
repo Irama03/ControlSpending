@@ -7,6 +7,7 @@ namespace ControlSpendingTests
 {
     public class TransactionTest
     {
+        Guid id1 = Guid.NewGuid();
         [Fact]
         public void ValidateTest()
         {
@@ -20,11 +21,11 @@ namespace ControlSpendingTests
             };
             var transaction = new Transaction()
             {
-                Id = 1,
+                Id = id1,
                 Sum = 275.89m,
                 Currency = Currencies.USD,
                 Description = "new transaction",
-                Date = new DateTime(2021, 7, 20),
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
                 Category = category
             };
 
@@ -51,7 +52,7 @@ namespace ControlSpendingTests
                 Sum = 275.89m,
                 Currency = Currencies.USD,
                 Description = "new transaction",
-                Date = new DateTime(2021, 7, 20),
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
                 Category = category
             };
 
@@ -75,10 +76,10 @@ namespace ControlSpendingTests
             };
             var transaction = new Transaction()
             {
-                Id = 1,
+                Id = id1,
                 Sum = 275.89m,
                 Description = "new transaction",
-                Date = new DateTime(2021, 7, 20),
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
                 Category = category
             };
 
@@ -102,7 +103,7 @@ namespace ControlSpendingTests
             };
             var transaction = new Transaction()
             {
-                Id = 1,
+                Id = id1,
                 Sum = 275.89m,
                 Currency = Currencies.USD,
                 Description = "new transaction",
@@ -122,11 +123,11 @@ namespace ControlSpendingTests
             //Arrange
             var transaction = new Transaction()
             {
-                Id = 1,
+                Id = id1,
                 Sum = 275.89m,
                 Currency = Currencies.USD,
                 Description = "new transaction",
-                Date = new DateTime(2021, 7, 20)
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0))
             };
 
             //Act

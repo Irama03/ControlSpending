@@ -8,20 +8,26 @@ namespace ControlSpending
     {
         static void Main(string[] args)
         {
-            var owner1 = new User(1, "Liza", "Andriienko", "liza123.sa@gmail.com");
-            var owner2 = new User(2, "Ira", "Matviienko", "ira123.sa@gmail.com");
-            var owner3 = new User(3, "Vova", "Apple", "vova123.sa@gmail.com");
+            Guid id1 = Guid.NewGuid();
+            Guid id2 = Guid.NewGuid();
+            Guid id3 = Guid.NewGuid();
+            var owner1 = new User(id1, "Liza", "Andriienko", "liza123.sa@gmail.com");
+            var owner2 = new User(id2, "Ira", "Matviienko", "ira123.sa@gmail.com");
+            var owner3 = new User(id3, "Vova", "Apple", "vova123.sa@gmail.com");
 
             List<Category> categories = new List<Category>();
             var category = new Category("food", "red", "coins.txt");
             categories.Add(category);
             owner1.Categories = categories;
 
-            var wallet = new Wallet(owner1, 1,"Wallet1", 505.3m, Currencies.EUR);
+            Guid id4 = Guid.NewGuid();
+            var wallet = new Wallet(owner1, id4, "Wallet1", 505.3m, Currencies.EUR);
 
             List<Transaction> transactions = new List<Transaction>();
-            var transaction1 = new Transaction(1, 275.89m, Currencies.USD, new DateTime(2021, 7, 20), category);
-            var transaction2 = new Transaction(2, 1.11m, Currencies.UAH, new DateTime(2020, 1, 15), category);
+            Guid id5 = Guid.NewGuid();
+            Guid id6 = Guid.NewGuid();
+            var transaction1 = new Transaction(id5, 275.89m, Currencies.USD, new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)), category);
+            var transaction2 = new Transaction(id6, 1.11m, Currencies.UAH, new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)), category);
             transactions.Add(transaction1);
             transactions.Add(transaction2);
 
@@ -42,15 +48,17 @@ namespace ControlSpending
             //wallet2.Transactions = transactions2;
 
 
-
-            var transaction3 = new Transaction(3, 1.112292929m, Currencies.UAH, new DateTime(1910, 10, 5), category);
+            Guid id7 = Guid.NewGuid();
+            var transaction3 = new Transaction(id7, 1.112292929m, Currencies.UAH, new DateTimeOffset(2011, 4, 2, 14, 10, 5, new TimeSpan(2, 0, 0)), category);
            
 
             Console.WriteLine();
-            owner1.ShowMyWallets();
+            //owner1.ShowMyWallets();
 
             owner1.shareWallet(owner2, wallet);
-            owner2.GetWallet(0).AddTransaction(transaction3, owner2.Id);
+            owner1.MyWallets[0].AddTransaction(transaction3, id2);
+            
+
            // wallet.AddTransaction(3, transaction3);
 
             Console.WriteLine();

@@ -16,15 +16,15 @@ namespace ControlSpending
             get { return Validate(); }
         }
 
-        public bool IsValidId(int id)
-        {
-            bool result = id >= 0;
-            if (!result)
-            {
-                Console.WriteLine("Invalid id!");
-            }
-            return result;
-        }
+        //public bool IsValidId(Guid id)
+        //{
+        //    bool result = id.CompareTo(0) >= 0;
+        //    if (!result)
+        //    {
+        //        Console.WriteLine("Invalid id!");
+        //    }
+        //    return result;
+        //}
 
         public static decimal TransformCurrencyToUSD(Currencies? from, decimal sum)
         {

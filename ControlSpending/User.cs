@@ -7,7 +7,7 @@ namespace ControlSpending
     // Class User keeps name, surname, email address. It can have an unlimited number of wallets and categories.
     public class User : Entity
     {
-        private int _id;
+        private Guid _id;
         private string _name;
         private string _surname;
         private string _email;
@@ -22,7 +22,7 @@ namespace ControlSpending
             _categories = new List<Category>();
         }
 
-        public User(int id, string name, string surname, string email)
+        public User(Guid id, string name, string surname, string email)
         {
             _id = id;
             _name = name;
@@ -37,20 +37,10 @@ namespace ControlSpending
             }
         }
 
-        public int Id
+        public Guid Id
         {
             get { return _id; }
-            set
-            {
-                if (value >= 0)
-                {
-                    _id = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Id!");
-                }
-            }
+            set { _id = value; }
         }
 
         public string Name 
@@ -122,10 +112,10 @@ namespace ControlSpending
             return _categories.Count;
         }
        
-        public Wallet GetWallet(int walletId)
+        public Wallet GetWallet(Guid walletId)
         {
-            if (IsValidId(walletId))
-            {
+            //if (IsValidId(walletId))
+            //{
                 foreach (var wallet in MyWallets)
                 {
                     if (wallet.Id == walletId)
@@ -134,7 +124,23 @@ namespace ControlSpending
                     }
                 }
                 Console.WriteLine("The wallet is not found");
-            }
+            //}
+            return null;
+        }
+
+        public Wallet GetOtherWallet(Guid walletId)
+        {
+            //if (IsValidId(walletId))
+            //{
+                foreach (var wallet in OtherWallets)
+                {
+                    if (wallet.Id == walletId)
+                    {
+                        return wallet;
+                    }
+                }
+                Console.WriteLine("The wallet is not found");
+            //}
             return null;
         }
 
@@ -144,32 +150,32 @@ namespace ControlSpending
            wallet.UsersId.Add(user.Id);
         }
 
-        public void ShowOtherWallets()
-        {
-            foreach (var wallet in OtherWallets)
-            {
-                Console.WriteLine(wallet);
-                return;
-            }
-        }
+        //public void ShowOtherWallets()
+        //{
+        //    foreach (var wallet in OtherWallets)
+        //    {
+        //        Console.WriteLine(wallet);
+        //        return;
+        //    }
+        //}
 
-        public void ShowMyWallets()
-        {
-            foreach (var wallet in MyWallets)
-            {
-                Console.WriteLine(wallet);
-                return;
-            }
-        }
+        //public void ShowMyWallets()
+        //{
+        //    foreach (var wallet in MyWallets)
+        //    {
+        //        Console.WriteLine(wallet);
+        //        return;
+        //    }
+        //}
 
-        public void ShowCategories()
-        {
-            foreach (var category in Categories)
-            {
-                Console.WriteLine(category);
-                return;
-            }
-        }
+        //public void ShowCategories()
+        //{
+        //    foreach (var category in Categories)
+        //    {
+        //        Console.WriteLine(category);
+        //        return;
+        //    }
+        //}
 
         public string FullName 
         {
@@ -192,7 +198,7 @@ namespace ControlSpending
         {
             var result = true;
 
-            if (Id <= 0)
+            if (Id == Guid.Empty)
                 result = false;
             if (String.IsNullOrWhiteSpace(Name))
                 result = false;

@@ -8,11 +8,11 @@ namespace ControlSpending
     //You can also attach files (images or text) to the transaction.
     public class Transaction : Entity
     {
-        private int _id;
+        private Guid _id;
         private decimal _sum;
         private Currencies? _currency;
         private string _description;
-        private DateTime? _date;
+        private DateTimeOffset? _date;
         private Category _category;
         private List<FileInfo> _files;
 
@@ -21,7 +21,7 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, decimal sum, Currencies? currency, DateTime? date, Category category)
+        public Transaction(Guid id, decimal sum, Currencies? currency, DateTimeOffset? date, Category category)
         {
             _id = id;
             _sum = sum;
@@ -35,20 +35,10 @@ namespace ControlSpending
             }
         }
 
-        public int Id
+        public Guid Id
         {
             get { return _id; }
-            set
-            {
-                if (value > 0)
-                {
-                    _id = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Id!");
-                }
-            }
+            set { _id = value; }
         }
 
         public decimal Sum
@@ -69,7 +59,7 @@ namespace ControlSpending
             set { _description = value; }
         }
 
-        public DateTime? Date
+        public DateTimeOffset? Date
         {
             get { return _date; }
             set { _date = value; }
@@ -107,7 +97,7 @@ namespace ControlSpending
         {
             var result = true;
 
-            if (Id <= 0)
+            if (Id == Guid.Empty)
                 result = false;
             if (Date == null)
                 result = false;
@@ -123,11 +113,11 @@ namespace ControlSpending
         {
             if (Description != null)
             {
-                return $"{Id}, {Sum}, {Currency}, {Description}, {Date}, Category ({Category})";
+                return $"{Sum}, {Currency}, {Description}, {Date}, Category ({Category})";
             }
             else
             {
-                return $"{Id}, {Sum}, {Currency}, {Date}, Category ({Category})";
+                return $"{Sum}, {Currency}, {Date}, Category ({Category})";
             }
         }
     }

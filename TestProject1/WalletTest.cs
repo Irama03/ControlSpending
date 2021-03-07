@@ -8,13 +8,16 @@ namespace ControlSpendingTests
 {
     public class WalletTest
     {
+        Guid id1 = Guid.NewGuid();
+        Guid id2 = Guid.NewGuid();
+        Guid id3 = Guid.NewGuid();
         [Fact]
         public void DeleteTransactionTest()
         {
             //Arrange
             var owner = new User()
             {
-                Id = 1, 
+                Id = id1, 
                 Name = "Ira", 
                 Surname = "Matviienko", 
                 Email = "ira123.sa@gmail.com"
@@ -36,21 +39,21 @@ namespace ControlSpendingTests
             List<Transaction> transactions = new List<Transaction>();
             var transaction1 = new Transaction()
             {
-                Id = 1,
+                Id = id2,
                 Sum = 275.89m,
                 Currency = Currencies.USD,
                 Description = "new transaction",
-                Date = new DateTime(2021, 7, 20),
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
                 Category = category,
                 Files = new List<FileInfo>()
             };
             var transaction2 = new Transaction()
             {
-                Id = 2,
+                Id = id3,
                 Sum = 1.11m,
                 Currency = Currencies.UAH,
                 Description = "transaction in UAH",
-                Date = new DateTime(2020, 1, 15),
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
                 Category = category,
                 Files = new List<FileInfo>()
             };
@@ -59,7 +62,7 @@ namespace ControlSpendingTests
 
             //Act
             wallet.Transactions = transactions;
-            var actual = wallet.DeleteTransaction(1);
+            var actual = wallet.DeleteTransaction(id2, id1);
 
             //Assert
             Assert.True(actual);
@@ -69,10 +72,10 @@ namespace ControlSpendingTests
         public void ValidateTest()
         {
             //Arrange
-            var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var owner = new User() { Id = id1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
             var wallet = new Wallet(owner)
             {
-                Id = 1,
+                Id = id2,
                 Name = "Wallet1",
                 InitialBalance = 505.3m,
                 Description = "new wallet",
@@ -90,30 +93,9 @@ namespace ControlSpendingTests
         public void ValidateNoIdTest()
         {
             //Arrange
-            var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var owner = new User() { Id = id1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
             var wallet = new Wallet(owner)
             {
-                Name = "Wallet1",
-                InitialBalance = 505.3m,
-                Description = "new wallet",
-                MainCurrency = Currencies.EUR
-            };
-
-            //Act
-            var actual = wallet.Validate();
-
-            //Assert
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateNoOwnerTest()
-        {
-            //Arrange
-            User owner = null;
-            var wallet = new Wallet(owner)
-            {
-                Id = 1,
                 Name = "Wallet1",
                 InitialBalance = 505.3m,
                 Description = "new wallet",
@@ -131,10 +113,10 @@ namespace ControlSpendingTests
         public void ValidateNoNameTest()
         {
             //Arrange
-            var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var owner = new User() { Id = id1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
             var wallet = new Wallet(owner)
             {
-                Id = 1,
+                Id = id2,
                 InitialBalance = 505.3m,
                 Description = "new wallet",
                 MainCurrency = Currencies.EUR
@@ -151,10 +133,10 @@ namespace ControlSpendingTests
         public void ValidateNoMainCurrencyTest()
         {
             //Arrange
-            var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var owner = new User() { Id = id1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
             var wallet = new Wallet(owner)
             {
-                Id = 1,
+                Id = id2,
                 Name = "Wallet1",
                 InitialBalance = 505.3m,
                 Description = "new wallet"
@@ -171,7 +153,7 @@ namespace ControlSpendingTests
         public void ValidateEmptyWalletTest()
         {
             //Arrange
-            User owner = null;
+            var owner = new User() { Id = id1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
             var wallet = new Wallet(owner);
 
             //Act

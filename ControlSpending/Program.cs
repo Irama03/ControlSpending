@@ -50,7 +50,7 @@ namespace ControlSpending
             owner1.ShowMyWallets();
 
             owner1.shareWallet(owner2, wallet);
-            wallet.AddTransaction(2, transaction3);
+            owner2.GetWallet(0).AddTransaction(transaction3, owner2.Id);
            // wallet.AddTransaction(3, transaction3);
 
             Console.WriteLine();

@@ -101,6 +101,7 @@ namespace ControlSpending
             _transactions = new List<Transaction>();
             _availabilityOfCategories = new List<bool>();
             _usersId = new List<int>();
+            _usersId.Add(_owner.Id);
             if (_owner.Categories != null)
             {
                 for (int i = 0; i < _owner.CategoriesAmount(); i++)
@@ -121,6 +122,7 @@ namespace ControlSpending
             _transactions = new List<Transaction>();
             _availabilityOfCategories = new List<bool>();
             _usersId = new List<int>();
+            _usersId.Add(_owner.Id);
             if (_owner.Categories != null)
             {
                 for (int i = 0; i < _owner.CategoriesAmount(); i++)
@@ -140,6 +142,16 @@ namespace ControlSpending
             return (_availabilityOfCategories[Owner.Categories.IndexOf(category)]);
         }
 
+        private bool userIsOwner(int userId)
+        {
+            bool result = (userId == Owner.Id);
+            if (!result)
+            {
+                Console.WriteLine("User can't perform the action because he/she isn't an owner!");
+            }
+            return result;
+        }
+
         private Transaction FindTransaction(int transactionId)
         {
             if (IsValidId(transactionId))
@@ -148,7 +160,6 @@ namespace ControlSpending
                 {
                     if (transaction.Id == transactionId)
                     {
-                        Console.WriteLine("+");
                         return transaction;
                     }
                 }
@@ -156,34 +167,8 @@ namespace ControlSpending
             }
             return null;
         }
-
-        //public void AddTransaction(Transaction transaction)
-        //{
-        //    foreach (var t in _transactions)
-        //    {
-        //        if (t.Id == transaction.Id)
-        //        {
-        //            Console.WriteLine("Transaction with this id already exists!");
-        //            return;
-        //        }
-        //    }
-        //    if (!(_owner.Categories.Contains(transaction.Category)))
-        //    {
-        //        Console.WriteLine("Transaction with unknown Category can't be added!");
-        //        return;
-        //    }
-        //    if (!IsAvailable(transaction.Category))
-        //    {
-        //        Console.WriteLine("Category of the transaction is unavailable. "
-        //                          + "Transaction can't be added!");
-        //        return;
-        //    }
-        //    _transactions.Add(transaction);
-        //    _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
-        //    Console.WriteLine("The transaction was added successfully");
-        //}
-
-        public void AddTransaction(int userId, Transaction transaction)
+        
+        public void AddTransaction(Transaction transaction, int userId)
         {
             foreach (var u in _usersId)
             {
@@ -218,153 +203,183 @@ namespace ControlSpending
             Console.WriteLine("The transaction was added successfully");
         }
 
-        public void EditIdOfTransaction(int transactionId, int newId)
+        public void EditIdOfTransaction(int transactionId, int newId, int userId)
         {
-            if (IsValidId(transactionId) && IsValidId(newId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId) && IsValidId(newId))
                 {
-                    transaction.Id = newId;
-                    Console.WriteLine("Id of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Id = newId;
+                        Console.WriteLine("Id of the transaction was edited successfully");
+                    }
                 }
             }
         }
 
-        public void EditSumOfTransaction(int transactionId, decimal newSum)
+        public void EditSumOfTransaction(int transactionId, decimal newSum, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    _currentBalance -= transaction.Sum;
-                    transaction.Sum = newSum;
-                    _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
-                    Console.WriteLine("Sum of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        _currentBalance -= transaction.Sum;
+                        transaction.Sum = newSum;
+                        _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
+                        Console.WriteLine("Sum of the transaction was edited successfully");
+                    }
                 }
             }
         }
 
-        public void EditCurrencyOfTransaction(int transactionId, Currencies newCurrency)
+        public void EditCurrencyOfTransaction(int transactionId, Currencies newCurrency, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    transaction.Currency = newCurrency;
-                    Console.WriteLine("Currency of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Currency = newCurrency;
+                        Console.WriteLine("Currency of the transaction was edited successfully");
+                    }
                 }
             }
         }
 
-        public void EditDescriptionOfTransaction(int transactionId, string newDescription)
+        public void EditDescriptionOfTransaction(int transactionId, string newDescription, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    transaction.Description = newDescription;
-                    Console.WriteLine("Description of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Description = newDescription;
+                        Console.WriteLine("Description of the transaction was edited successfully");
+                    }
                 }
             }
         }
 
-        public void EditDateOfTransaction(int transactionId, DateTime newDate)
+        public void EditDateOfTransaction(int transactionId, DateTime newDate, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    transaction.Date = newDate;
-                    Console.WriteLine("Date of the transaction was edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Date = newDate;
+                        Console.WriteLine("Date of the transaction was edited successfully");
+                    }
                 }
             }
         }
 
-        public void EditCategoryOfTransaction(int transactionId, Category newCategory)
+        public void EditCategoryOfTransaction(int transactionId, Category newCategory, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                if (!(Owner.Categories.Contains(newCategory)))
+                if (IsValidId(transactionId))
                 {
-                    Console.WriteLine("Category of the Transaction can't be changed to unknown Category!");
-                    return;
-                }
-                if (!IsAvailable(newCategory))
-                {
-                    Console.WriteLine("New category of the transaction is unavailable. "
-                                      + "Category of the Transaction can't be changed!");
-                    return;
-                }
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
-                {
-                    transaction.Category = newCategory;
-                    Console.WriteLine("Category of the transaction was edited successfully");
+                    if (!(Owner.Categories.Contains(newCategory)))
+                    {
+                        Console.WriteLine("Category of the Transaction can't be changed to unknown Category!");
+                        return;
+                    }
+                    if (!IsAvailable(newCategory))
+                    {
+                        Console.WriteLine("New category of the transaction is unavailable. "
+                                          + "Category of the Transaction can't be changed!");
+                        return;
+                    }
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Category = newCategory;
+                        Console.WriteLine("Category of the transaction was edited successfully");
+                    }
                 }
             }
         }
 
-        public void EditFilesOfTransaction(int transactionId, List<FileInfo> newFiles)
+        public void EditFilesOfTransaction(int transactionId, List<FileInfo> newFiles, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    transaction.Files = newFiles;
-                    Console.WriteLine("Files of the transaction were edited successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.Files = newFiles;
+                        Console.WriteLine("Files of the transaction were edited successfully");
+                    }
                 }
             }
         }
 
-        public void AddFileToTransaction(int transactionId, string pathToNewFile)
+        public void AddFileToTransaction(int transactionId, string pathToNewFile, int userId)
         {
-        if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    transaction.AddFile(pathToNewFile);
-                    Console.WriteLine("New file was added to the transaction successfully");
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        transaction.AddFile(pathToNewFile);
+                        Console.WriteLine("New file was added to the transaction successfully");
+                    }
                 }
             }
         }
 
-        public bool DeleteTransaction(int transactionId)
+        public bool DeleteTransaction(int transactionId, int userId)
         {
-            if (IsValidId(transactionId))
+            if (userIsOwner(userId))
             {
-                var transaction = FindTransaction(transactionId);
-                if (transaction != null)
+                if (IsValidId(transactionId))
                 {
-                    _transactions.Remove(transaction);
-                    _currentBalance -= TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
-                    Console.WriteLine("The transaction was deleted successfully");
-                    return true;
+                    var transaction = FindTransaction(transactionId);
+                    if (transaction != null)
+                    {
+                        _transactions.Remove(transaction);
+                        _currentBalance -= TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
+                        Console.WriteLine("The transaction was deleted successfully");
+                        return true;
+                    }
                 }
             }
             return false;
         }
 
-        public void ChangeAvailabilityOfCategory(string categoryName, bool availability)
+        public void ChangeAvailabilityOfCategory(string categoryName, bool availability, int userId)
         {
-            int index = 0;
-            foreach (var category in Owner.Categories)
+            if (userIsOwner(userId))
             {
-                if (category.Name.Equals(categoryName))
+                int index = 0;
+                foreach (var category in Owner.Categories)
                 {
-                    _availabilityOfCategories[index] = availability;
-                    Console.WriteLine("Availability of the category was changed successfully");
-                    return;
+                    if (category.Name.Equals(categoryName))
+                    {
+                        _availabilityOfCategories[index] = availability;
+                        Console.WriteLine("Availability of the category was changed successfully");
+                        return;
+                    }
+                    index++;
                 }
-                index++;
+                Console.WriteLine("The category is not found");
             }
-            Console.WriteLine("The category is not found");
         }
 
         public decimal GeneralSumOfIncomeForMonth()

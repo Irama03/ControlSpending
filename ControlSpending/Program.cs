@@ -13,7 +13,7 @@ namespace ControlSpending
             var owner3 = new User(3, "Vova", "Apple", "vova123.sa@gmail.com");
 
             List<Category> categories = new List<Category>();
-            var category = new Category("food", "red", "apple.txt");
+            var category = new Category("food", "red", "coins.txt");
             categories.Add(category);
             owner1.Categories = categories;
 
@@ -48,10 +48,10 @@ namespace ControlSpending
 
             Console.WriteLine();
             owner1.ShowMyWallets();
-           
-            owner1.AddFriend(owner2, 1);
-            owner2.AddTransaction(wallet, transaction3);
-           // owner3.AddTransaction(wallet, transaction3);
+
+            owner1.shareWallet(owner2, wallet);
+            wallet.AddTransaction(2, transaction3);
+           // wallet.AddTransaction(3, transaction3);
 
             Console.WriteLine();
             wallet.ShowTransactions();

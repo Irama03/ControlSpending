@@ -111,6 +111,11 @@ namespace ControlSpending
         {
             return _categories.Count;
         }
+        
+        public int MyWalletsAmount()
+        {
+            return _myWallets.Count;
+        }
        
         public Wallet GetWallet(Guid walletId)
         {

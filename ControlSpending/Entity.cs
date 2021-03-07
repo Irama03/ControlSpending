@@ -16,7 +16,17 @@ namespace ControlSpending
             get { return Validate(); }
         }
 
-        public static decimal TransformCurrencyToUSD(Currencies from, decimal sum)
+        public bool IsValidId(int id)
+        {
+            bool result = id >= 0;
+            if (!result)
+            {
+                Console.WriteLine("Invalid id!");
+            }
+            return result;
+        }
+
+        public static decimal TransformCurrencyToUSD(Currencies? from, decimal sum)
         {
             switch (from)
             {
@@ -37,7 +47,7 @@ namespace ControlSpending
             }
         }
         
-        public static decimal TransformCurrencyFromUSD(Currencies to, decimal sum)
+        public static decimal TransformCurrencyFromUSD(Currencies? to, decimal sum)
         {
             switch (to)
             {
@@ -58,7 +68,7 @@ namespace ControlSpending
             }
         }
         
-        public static decimal TransformCurrency(Currencies from, Currencies to, decimal sum)
+        public static decimal TransformCurrency(Currencies? from, Currencies? to, decimal sum)
         {
             return TransformCurrencyFromUSD(to, TransformCurrencyToUSD(from, sum));
         }

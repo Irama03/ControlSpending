@@ -53,7 +53,7 @@ namespace  ControlSpendingTests
         public void ValidateTest()
         {
             //Arrange
-            var user = new User() { Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var user = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
 
             //Act
             var actual = user.Validate();
@@ -63,10 +63,23 @@ namespace  ControlSpendingTests
         }
 
         [Fact]
+        public void ValidateNoIdTest()
+        {
+            //Arrange
+            var user = new User() { Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+
+            //Act
+            var actual = user.Validate();
+
+            //Assert
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void ValidateNoNameTest()
         {
             //Arrange
-            var user = new User() { Email = "liza123.sa@gmail.com" };
+            var user = new User() { Id = 1, Email = "liza123.sa@gmail.com" };
 
             //Act
             var actual = user.Validate();
@@ -79,7 +92,7 @@ namespace  ControlSpendingTests
         public void ValidateNoEmailTest()
         {
             //Arrange
-            var user = new User() { Name = "Liza", Surname = "Andriienko" };
+            var user = new User() { Id = 1, Name = "Liza", Surname = "Andriienko" };
 
             //Act
             var actual = user.Validate();

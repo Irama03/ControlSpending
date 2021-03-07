@@ -10,7 +10,7 @@ namespace ControlSpending
     {
         private int _id;
         private decimal _sum;
-        private Currencies _currency;
+        private Currencies? _currency;
         private string _description;
         private DateTime? _date;
         private Category _category;
@@ -22,12 +22,11 @@ namespace ControlSpending
             _files = new List<FileInfo>();
         }
 
-        public Transaction(int id, decimal sum, Currencies currency, string description, DateTime? date, Category category)
+        public Transaction(int id, decimal sum, Currencies? currency, DateTime? date, Category category)
         {
             _id = id;
             _sum = sum;
             _currency = currency;
-            _description = description;
             _date = date;
             _category = category;
             _files = new List<FileInfo>();
@@ -59,7 +58,7 @@ namespace ControlSpending
             set { _sum = value; }
         }
 
-        public Currencies Currency
+        public Currencies? Currency
         {
             get { return _currency; }
             set { _currency = value; }
@@ -110,6 +109,7 @@ namespace ControlSpending
         //    if (EnableFile == false) { EnableFile = true; }
         //    FileInfo fileInfo = new FileInfo(path);
         //}
+
         private void AddFile(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
@@ -124,6 +124,8 @@ namespace ControlSpending
                 result = false;
             if (Date == null)
                 result = false;
+            if (Currency == null)
+                result = false;
             if (Category == null)
                 result = false;
 
@@ -132,7 +134,14 @@ namespace ControlSpending
 
         public override string ToString()
         {
-            return $"{Id}, {Sum}, {Currency}, {Description}, {Date}, Category ({Category})";
+            if (Description != null)
+            {
+                return $"{Id}, {Sum}, {Currency}, {Description}, {Date}, Category ({Category})";
+            }
+            else
+            {
+                return $"{Id}, {Sum}, {Currency}, {Date}, Category ({Category})";
+            }
         }
     }
 }

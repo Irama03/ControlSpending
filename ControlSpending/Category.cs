@@ -67,10 +67,9 @@ namespace ControlSpending
 
         public Category() { }
 
-        public Category(string name, string description, string color, string iconPath)
+        public Category(string name, string color, string iconPath)
         {
             _name = name;
-            _description = description;
             _color = color;
             _icon = new FileInfo(iconPath);
             if (!Validate())
@@ -95,7 +94,14 @@ namespace ControlSpending
 
         public override string ToString()
         {
-            return $"{Name}, {Description}, {Color}, {Icon.Name}";
+            if (Description != null)
+            {
+                return $"{Name}, {Description}, {Color}, {Icon.Name}";
+            }
+            else
+            {
+                return $"{Name}, {Color}, {Icon.Name}";
+            }
         }
     }
 }

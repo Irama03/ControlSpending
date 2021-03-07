@@ -22,7 +22,7 @@ namespace ControlSpendingTests
             {
                 Id = 1,
                 Sum = 275.89m,
-                Currency = "dollar",
+                Currency = Currencies.USD,
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
                 Category = category
@@ -49,7 +49,7 @@ namespace ControlSpendingTests
             var transaction = new Transaction()
             {
                 Sum = 275.89m,
-                Currency = "dollar",
+                Currency = Currencies.USD,
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20),
                 Category = category
@@ -104,7 +104,7 @@ namespace ControlSpendingTests
             {
                 Id = 1,
                 Sum = 275.89m,
-                Currency = "dollar",
+                Currency = Currencies.USD,
                 Description = "new transaction",
                 Category = category
             };
@@ -124,7 +124,7 @@ namespace ControlSpendingTests
             {
                 Id = 1,
                 Sum = 275.89m,
-                Currency = "dollar",
+                Currency = Currencies.USD,
                 Description = "new transaction",
                 Date = new DateTime(2021, 7, 20)
             };

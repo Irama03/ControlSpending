@@ -14,7 +14,6 @@ namespace ControlSpending
         private string _description;
         private DateTime? _date;
         private Category _category;
-        // private bool _enableFile = false;
         private List<FileInfo> _files;
 
         public Transaction()
@@ -98,19 +97,7 @@ namespace ControlSpending
             set { _files = value; }
         }
 
-        //public bool EnableFile
-        //{
-        //    get { return _enableFile; }
-        //    set { _enableFile = value; }
-        //}
-
-        //private void AddFile(string path)
-        //{
-        //    if (EnableFile == false) { EnableFile = true; }
-        //    FileInfo fileInfo = new FileInfo(path);
-        //}
-
-        private void AddFile(string path)
+        public void AddFile(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
             _files.Add(fileInfo);

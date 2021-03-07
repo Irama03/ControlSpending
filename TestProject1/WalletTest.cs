@@ -12,6 +12,14 @@ namespace ControlSpendingTests
         public void DeleteTransactionTest()
         {
             //Arrange
+            var owner = new User()
+            {
+                Id = 1, 
+                Name = "Ira", 
+                Surname = "Matviienko", 
+                Email = "ira123.sa@gmail.com"
+            };
+
             var category = new Category()
             {
                 Name = "food",
@@ -19,7 +27,7 @@ namespace ControlSpendingTests
                 Color = "red",
                 Icon = new FileInfo("apple")
             };
-            Wallet wallet = new Wallet()
+            Wallet wallet = new Wallet(owner)
             {
                 InitialBalance = 505.3m,
                 Description = "new wallet",
@@ -62,10 +70,9 @@ namespace ControlSpendingTests
         {
             //Arrange
             var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
-            var wallet = new Wallet()
+            var wallet = new Wallet(owner)
             {
                 Id = 1,
-                Owner = owner,
                 Name = "Wallet1",
                 InitialBalance = 505.3m,
                 Description = "new wallet",
@@ -84,9 +91,8 @@ namespace ControlSpendingTests
         {
             //Arrange
             var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
-            var wallet = new Wallet()
+            var wallet = new Wallet(owner)
             {
-                Owner = owner,
                 Name = "Wallet1",
                 InitialBalance = 505.3m,
                 Description = "new wallet",
@@ -104,7 +110,8 @@ namespace ControlSpendingTests
         public void ValidateNoOwnerTest()
         {
             //Arrange
-            var wallet = new Wallet()
+            User owner = null;
+            var wallet = new Wallet(owner)
             {
                 Id = 1,
                 Name = "Wallet1",
@@ -125,10 +132,9 @@ namespace ControlSpendingTests
         {
             //Arrange
             var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
-            var wallet = new Wallet()
+            var wallet = new Wallet(owner)
             {
                 Id = 1,
-                Owner = owner,
                 InitialBalance = 505.3m,
                 Description = "new wallet",
                 MainCurrency = Currencies.EUR
@@ -146,10 +152,9 @@ namespace ControlSpendingTests
         {
             //Arrange
             var owner = new User() { Id = 1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
-            var wallet = new Wallet()
+            var wallet = new Wallet(owner)
             {
                 Id = 1,
-                Owner = owner,
                 Name = "Wallet1",
                 InitialBalance = 505.3m,
                 Description = "new wallet"
@@ -166,7 +171,8 @@ namespace ControlSpendingTests
         public void ValidateEmptyWalletTest()
         {
             //Arrange
-            var wallet = new Wallet();
+            User owner = null;
+            var wallet = new Wallet(owner);
 
             //Act
             var actual = wallet.Validate();

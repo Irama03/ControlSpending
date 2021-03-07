@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using static ControlSpending.User;
 
 namespace ControlSpending
 {
@@ -19,7 +18,6 @@ namespace ControlSpending
             owner1.Categories = categories;
 
             var wallet = new Wallet(owner1, 1,"Wallet1", 505.3m, Currencies.EUR);
-            wallet.Categories = categories;
 
             List<Transaction> transactions = new List<Transaction>();
             var transaction1 = new Transaction(1, 275.89m, Currencies.USD, new DateTime(2021, 7, 20), category);

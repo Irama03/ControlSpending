@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControlSpending
 {
@@ -19,32 +16,20 @@ namespace ControlSpending
         private string _description;
         private Currencies? _mainCurrency;
         private List<Transaction> _transactions;
-        private List<Category> _categories;
         private List<bool> _availabilityOfCategories;
         private List<int> _usersId;
 
         public User Owner
         {
             get { return _owner; }
-            set
-            {
-                if (value != null)
-                {
-                    _owner = value;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of Owner!");
-                }
-            }
         }
-
+        
         public int Id
         {
             get { return _id; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     _id = value;
                 }
@@ -85,7 +70,6 @@ namespace ControlSpending
         public decimal CurrentBalance
         {
             get { return _currentBalance; }
-            set { _currentBalance = value; }
         }
 
         public string Description
@@ -102,7 +86,6 @@ namespace ControlSpending
 
         public List<Transaction> Transactions
         {
-            get { return _transactions; }
             set { _transactions = value; }
         }
 
@@ -112,26 +95,10 @@ namespace ControlSpending
             set { _usersId = value; }
         }
 
-        public List<Category> Categories
-        {
-            get { return _categories; }
-            set { _categories = value; }
-        }
-
-        /*public List<Category> Categories
-        {
-            get
-            {
-                return _categories;
-            }
-        }*/
-
         public Wallet(User user)
         {
             _owner = user;
-            //_currentBalance = _initialBalance = 0;
             _transactions = new List<Transaction>();
-            _categories = new List<Category>();
             _availabilityOfCategories = new List<bool>();
             _usersId = new List<int>();
             if (_owner.Categories != null)
@@ -143,7 +110,7 @@ namespace ControlSpending
             }
         }
 
-        public Wallet(User user, int id, string name, decimal initialBalance, Currencies? mainCurrency)//, List<Category> categories)
+        public Wallet(User user, int id, string name, decimal initialBalance, Currencies? mainCurrency)
         {
             _owner = user;
             _id = id;
@@ -152,8 +119,6 @@ namespace ControlSpending
             _currentBalance = _initialBalance;
             _mainCurrency = mainCurrency;
             _transactions = new List<Transaction>();
-            _categories = new List<Category>();
-            // _categories = categories;
             _availabilityOfCategories = new List<bool>();
             _usersId = new List<int>();
             if (_owner.Categories != null)
@@ -167,24 +132,19 @@ namespace ControlSpending
             {
                 throw new ArgumentException("Invalid argument in constructor of Wallet!");
             }
-            for(int i = 0; i < user.CategoriesAmount(); i++)
-                _categories.Add(user.Categories[i]);
-
             user.MyWallets.Add(this);
         }
 
-        public Wallet() { }
-
         public bool IsAvailable(Category category)
         {
-            return (_availabilityOfCategories[_owner.Categories.IndexOf(category)]);
+            return (_availabilityOfCategories[Owner.Categories.IndexOf(category)]);
         }
 
         private Transaction FindTransaction(int transactionId)
         {
             if (IsValidId(transactionId))
             {
-                foreach (var transaction in Transactions)
+                foreach (var transaction in _transactions)
                 {
                     if (transaction.Id == transactionId)
                     {
@@ -268,18 +228,11 @@ namespace ControlSpending
         {
             if (IsValidId(transactionId))
             {
-                if (!String.IsNullOrWhiteSpace(newDescription))
+                var transaction = FindTransaction(transactionId);
+                if (transaction != null)
                 {
-                    var transaction = FindTransaction(transactionId);
-                    if (transaction != null)
-                    {
-                        transaction.Description = newDescription;
-                        Console.WriteLine("Description of the transaction was edited successfully");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid value of newDescription!");
+                    transaction.Description = newDescription;
+                    Console.WriteLine("Description of the transaction was edited successfully");
                 }
             }
         }
@@ -301,7 +254,7 @@ namespace ControlSpending
         {
             if (IsValidId(transactionId))
             {
-                if (!(_owner.Categories.Contains(newCategory)))
+                if (!(Owner.Categories.Contains(newCategory)))
                 {
                     Console.WriteLine("Category of the Transaction can't be changed to unknown Category!");
                     return;
@@ -334,20 +287,18 @@ namespace ControlSpending
             }
         }
 
-        //Should AddFile() in Transaction be private?
-
-        /*public void AddFileToTransaction(int transactionId, FileInfo newFile)
+        public void AddFileToTransaction(int transactionId, string pathToNewFile)
         {
-        if (transactionIdIsValid(transactionId))
+        if (IsValidId(transactionId))
             {
                 var transaction = FindTransaction(transactionId);
                 if (transaction != null)
                 {
-                    transaction.AddFile(newFile);
+                    transaction.AddFile(pathToNewFile);
                     Console.WriteLine("New file was added to the transaction successfully");
                 }
             }
-        }*/
+        }
 
         public bool DeleteTransaction(int transactionId)
         {
@@ -368,7 +319,7 @@ namespace ControlSpending
         public void ChangeAvailabilityOfCategory(string categoryName, bool availability)
         {
             int index = 0;
-            foreach (var category in _owner.Categories)
+            foreach (var category in Owner.Categories)
             {
                 if (category.Name.Equals(categoryName))
                 {
@@ -385,7 +336,7 @@ namespace ControlSpending
         {
             decimal result = 0;
             int currMonth = DateTime.Now.Month;
-            foreach (var transaction in Transactions)
+            foreach (var transaction in _transactions)
             {
                 if (transaction.Date != null && transaction.Date.Value.Month == currMonth)
                 {
@@ -402,7 +353,7 @@ namespace ControlSpending
         {
             decimal result = 0;
             int currMonth = DateTime.Now.Month;
-            foreach (var transaction in Transactions)
+            foreach (var transaction in _transactions)
             {
                 if (transaction.Date != null && transaction.Date.Value.Month == currMonth)
                 {
@@ -417,7 +368,7 @@ namespace ControlSpending
 
         public void ShowTransactions(int start = 0, int finish = 9)
         {
-            int lastIndexOfTrans = Transactions.Count - 1;
+            int lastIndexOfTrans = _transactions.Count - 1;
             if (start < 0 || finish < 0 || finish < start || start > lastIndexOfTrans)
             {
                 Console.WriteLine("Invalid index!");
@@ -429,7 +380,7 @@ namespace ControlSpending
                     finish = lastIndexOfTrans;
                 }
                 var i = 0;
-                foreach (var transaction in Transactions)
+                foreach (var transaction in _transactions)
                 {
                     if (i >= start && i <= finish)
                     {
@@ -446,7 +397,7 @@ namespace ControlSpending
 
         public void ShowAvailableCategories()
         {
-            foreach (var category in _owner.Categories)
+            foreach (var category in Owner.Categories)
             {
                 if (IsAvailable(category))
                 {

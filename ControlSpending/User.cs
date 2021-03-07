@@ -45,7 +45,7 @@ namespace ControlSpending
             get { return _id; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     _id = value;
                 }

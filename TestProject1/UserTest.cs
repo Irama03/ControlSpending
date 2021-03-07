@@ -1,13 +1,75 @@
 using ControlSpending;
 using System;
 using System.IO;
+using System.Collections.Generic;
 using Xunit;
 
 namespace  ControlSpendingTests
 {
     public class UserTest
     {
+        Guid id = Guid.NewGuid();
         Guid id1 = Guid.NewGuid();
+        Guid id2 = Guid.NewGuid();
+        Guid id3 = Guid.NewGuid();
+        Guid id4 = Guid.NewGuid();
+
+        [Fact]
+        public void ShareWalletTest()
+        {
+            //Arrange
+            var user1 = new User() { Id = id1, Name = "Liza", Surname = "Andriienko", Email = "liza123.sa@gmail.com" };
+            var user2 = new User() { Id = id2, Name = "Ira", Surname = "Matviienko", Email = "ira123.sa@gmail.com" };
+            var category = new Category()
+            {
+                Name = "food",
+                Description = "new category food",
+                Color = "red",
+                Icon = new FileInfo("apple")
+            };
+            Wallet wallet = new Wallet(user1)
+            {
+                Id = id,
+                InitialBalance = 505.3m,
+                Description = "new wallet",
+                MainCurrency = Currencies.EUR
+            };
+            List<Transaction> transactions = new List<Transaction>();
+            var transaction1 = new Transaction()
+            {
+                Id = id3,
+                Sum = 275.89m,
+                Currency = Currencies.USD,
+                Description = "new transaction",
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
+                Category = category,
+                Files = new List<FileInfo>()
+            };
+            var transaction2 = new Transaction()
+            {
+                Id = id4,
+                Sum = 1.11m,
+                Currency = Currencies.UAH,
+                Description = "transaction in UAH",
+                Date = new DateTimeOffset(2021, 7, 20, 14, 10, 5, new TimeSpan(2, 0, 0)),
+                Category = category,
+                Files = new List<FileInfo>()
+            };
+            transactions.Add(transaction1);
+            transactions.Add(transaction2);
+            wallet.Transactions = transactions;
+
+            user1.ShareWallet(user2, wallet);
+
+            //Act
+             var actual1 = user2.OtherWallets.Contains(wallet);
+             var actual2 = wallet.UsersId.Contains(user2.Id);
+
+            //Assert
+            Assert.True(actual1);
+            Assert.True(actual2);
+        }
+
         [Fact]
         public void FullNameTest()
         {

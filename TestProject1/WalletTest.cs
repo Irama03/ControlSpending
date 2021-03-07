@@ -11,6 +11,7 @@ namespace ControlSpendingTests
         Guid id1 = Guid.NewGuid();
         Guid id2 = Guid.NewGuid();
         Guid id3 = Guid.NewGuid();
+
         [Fact]
         public void DeleteTransactionTest()
         {

@@ -114,8 +114,6 @@ namespace ControlSpending
        
         public Wallet GetWallet(Guid walletId)
         {
-            //if (IsValidId(walletId))
-            //{
                 foreach (var wallet in MyWallets)
                 {
                     if (wallet.Id == walletId)
@@ -124,14 +122,11 @@ namespace ControlSpending
                     }
                 }
                 Console.WriteLine("The wallet is not found");
-            //}
             return null;
         }
 
         public Wallet GetOtherWallet(Guid walletId)
         {
-            //if (IsValidId(walletId))
-            //{
                 foreach (var wallet in OtherWallets)
                 {
                     if (wallet.Id == walletId)
@@ -140,13 +135,12 @@ namespace ControlSpending
                     }
                 }
                 Console.WriteLine("The wallet is not found");
-            //}
             return null;
         }
 
-        public void shareWallet(User user, Wallet wallet)
+        public void ShareWallet(User user, Wallet wallet)
         {
-           user.OtherWallets.Add(GetWallet(wallet.Id));
+           user.OtherWallets.Add(wallet);
            wallet.UsersId.Add(user.Id);
         }
 

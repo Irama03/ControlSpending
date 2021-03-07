@@ -76,6 +76,7 @@ namespace ControlSpending
 
         public List<Transaction> Transactions
         {
+            get { return _transactions; }
             set { _transactions = value; }
         }
 
@@ -144,8 +145,6 @@ namespace ControlSpending
 
         private Transaction FindTransaction(Guid transactionId)
         {
-            //if (IsValidId(transactionId))
-            //{
                 foreach (var transaction in _transactions)
                 {
                     if (transaction.Id == transactionId)
@@ -154,7 +153,6 @@ namespace ControlSpending
                     }
                 }
                 Console.WriteLine("The transaction is not found");
-           // }
             return null;
         }
         
@@ -196,24 +194,19 @@ namespace ControlSpending
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId) && IsValidId(newId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
                         transaction.Id = newId;
                         Console.WriteLine("Id of the transaction was edited successfully");
                     }
-               // }
-            }
+             }
         }
 
         public void EditSumOfTransaction(Guid transactionId, decimal newSum, Guid userId)
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
@@ -222,23 +215,19 @@ namespace ControlSpending
                         _currentBalance += TransformCurrency(transaction.Currency, MainCurrency, transaction.Sum);
                         Console.WriteLine("Sum of the transaction was edited successfully");
                     }
-               // }
-            }
+             }
         }
 
         public void EditCurrencyOfTransaction(Guid transactionId, Currencies newCurrency, Guid userId)
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
                         transaction.Currency = newCurrency;
                         Console.WriteLine("Currency of the transaction was edited successfully");
                     }
-               // }
             }
         }
 
@@ -246,15 +235,12 @@ namespace ControlSpending
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
                         transaction.Description = newDescription;
                         Console.WriteLine("Description of the transaction was edited successfully");
                     }
-               // }
             }
         }
 
@@ -262,24 +248,19 @@ namespace ControlSpending
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
                         transaction.Date = newDate;
                         Console.WriteLine("Date of the transaction was edited successfully");
                     }
-               // }
-            }
+              }
         }
 
         public void EditCategoryOfTransaction(Guid transactionId, Category newCategory, Guid userId)
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     if (!(Owner.Categories.Contains(newCategory)))
                     {
                         Console.WriteLine("Category of the Transaction can't be changed to unknown Category!");
@@ -297,48 +278,39 @@ namespace ControlSpending
                         transaction.Category = newCategory;
                         Console.WriteLine("Category of the transaction was edited successfully");
                     }
-                //}
-            }
+               }
         }
 
         public void EditFilesOfTransaction(Guid transactionId, List<FileInfo> newFiles, Guid userId)
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
                         transaction.Files = newFiles;
                         Console.WriteLine("Files of the transaction were edited successfully");
                     }
-               // }
-            }
+             }
         }
 
         public void AddFileToTransaction(Guid transactionId, string pathToNewFile, Guid userId)
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
                         transaction.AddFile(pathToNewFile);
                         Console.WriteLine("New file was added to the transaction successfully");
                     }
-              //  }
-            }
+             }
         }
 
         public bool DeleteTransaction(Guid transactionId, Guid userId)
         {
             if (userIsOwner(userId))
             {
-                //if (IsValidId(transactionId))
-                //{
                     var transaction = FindTransaction(transactionId);
                     if (transaction != null)
                     {
@@ -347,8 +319,7 @@ namespace ControlSpending
                         Console.WriteLine("The transaction was deleted successfully");
                         return true;
                     }
-                //}
-            }
+             }
             return false;
         }
 

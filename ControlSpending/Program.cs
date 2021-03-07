@@ -50,19 +50,20 @@ namespace ControlSpending
 
             Guid id7 = Guid.NewGuid();
             var transaction3 = new Transaction(id7, 1.112292929m, Currencies.UAH, new DateTimeOffset(2011, 4, 2, 14, 10, 5, new TimeSpan(2, 0, 0)), category);
-           
+
 
             Console.WriteLine();
             //owner1.ShowMyWallets();
 
-            owner1.shareWallet(owner2, wallet);
+            owner1.ShareWallet(owner2, wallet);
             owner1.MyWallets[0].AddTransaction(transaction3, id2);
-            
 
-           // wallet.AddTransaction(3, transaction3);
+
+            // wallet.AddTransaction(3, transaction3);
 
             Console.WriteLine();
             wallet.ShowTransactions();
+
         }
     }
 }

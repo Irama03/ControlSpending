@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using AV.ProgrammingWithCSharp.Budgets.Models.Users;
-using AV.ProgrammingWithCSharp.Budgets.Services;
+using ControlSpending.Users;
+using ControlSpending.Services;
 using Prism.Commands;
 
 namespace ControlSpendingWPF.Authentication

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ControlSpendingsWPF.Wallets
+namespace ControlSpendingWPF.Wallets
 {
     /// <summary>
     /// Interaction logic for WalletsView.xaml

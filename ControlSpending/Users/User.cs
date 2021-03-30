@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace ControlSpending
+namespace ControlSpending.Users
 {
     // Class User keeps name, surname, email address. It can have an unlimited number of wallets and categories.
     public class User : Entity

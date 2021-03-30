@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AV.ProgrammingWithCSharp.Budgets.Models.Wallets;
-using AV.ProgrammingWithCSharp.Budgets.Services;
+using ControlSpending.Services;
+using ControlSpending.Wallet;
 using Prism.Mvvm;
 
 namespace ControlSpendingWPF.Wallets

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using ControlSpending.Users;
 using Xunit;
 
 namespace ControlSpendingTests

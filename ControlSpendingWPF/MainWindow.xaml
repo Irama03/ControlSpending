@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
 
         <!--Header-->
-        <wpf:Header></wpf:Header>
+        <local:Header></local:Header>
 
         <!--Main Control-->
-        <wpf:MainView Grid.Row="1"></wpf:MainView>
+        <local:MainView Grid.Row="1"></local:MainView>
     </Grid>
 </Window>

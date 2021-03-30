@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{820D0511
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlSpendingWPF", "ControlSpendingWPF\ControlSpendingWPF.csproj", "{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Core", "..\..\..\..\..\..\НАУКМА\2курс2семестр\С#\Prism-master\Prism-master\src\Prism.Core\Prism.Core.csproj", "{8FCC1AF6-81A0-41EA-B5C4-3E88AE595D2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FCC1AF6-81A0-41EA-B5C4-3E88AE595D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FCC1AF6-81A0-41EA-B5C4-3E88AE595D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

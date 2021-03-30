@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{820D0511
 		Files\money_exchange.txt = Files\money_exchange.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlSpendingWPF", "ControlSpendingWPF\ControlSpendingWPF.csproj", "{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F1CD32A0-4182-4951-A10C-F7D7734874CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1CD32A0-4182-4951-A10C-F7D7734874CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1CD32A0-4182-4951-A10C-F7D7734874CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

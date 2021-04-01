@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ControlSpending
+namespace CSharp.ControlSpending
 {
     // Class Category keeps the name, description, color and icon.
     public class Category : Entity

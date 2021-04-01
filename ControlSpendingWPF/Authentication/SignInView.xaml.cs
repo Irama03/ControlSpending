@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace ControlSpendingWPF.Authentication
+namespace CSharp.ControlSpending.GUI.WPF.Authentication
 {
     /// <summary>
     /// Interaction logic for SignInView.xaml

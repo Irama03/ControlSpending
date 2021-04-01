@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CSharp.ControlSpending.GUI.WPF.Authentication;
-using CSharp.ControlSpending.GUI.WPF.Wallets;
 using Prism.Mvvm;
 
-namespace CSharp.ControlSpending.GUI.WPF
+namespace CSharp.ControlSpending.CS
 {
     public class MainViewModel : BindableBase
     {

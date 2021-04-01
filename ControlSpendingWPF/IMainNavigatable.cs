@@ -1,4 +1,4 @@
-﻿namespace ControlSpendingWPF
+﻿namespace CSharp.ControlSpending.GUI.WPF
 {
     public enum MainNavigatableTypes
     {

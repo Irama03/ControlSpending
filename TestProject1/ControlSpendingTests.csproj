@@ -4,6 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>ControlSpending.Tests</AssemblyName>
+
+    <RootNamespace>CSharp.ControlSpending.Tests</RootNamespace>
+
+    <Company>ControlSpending.Tests</Company>
+
+    <Product>ControlSpending.Tests</Product>
   </PropertyGroup>
 
   <ItemGroup>

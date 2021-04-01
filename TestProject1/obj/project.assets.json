@@ -5644,7 +5644,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
-      "projectName": "ControlSpendingTests",
+      "projectName": "ControlSpending.Tests",
       "projectPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\ControlSpendingTests.csproj",
       "packagesPath": "C:\\Users\\Iryna\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Iryna\\RiderProjects\\ControlSpending\\TestProject1\\obj\\",

@@ -3,11 +3,10 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using ControlSpending.Users;
-using ControlSpending.Services;
 using Prism.Commands;
+using CSharp.ControlSpending.Users;
 
-namespace ControlSpendingWPF.Authentication
+namespace CSharp.ControlSpending.GUI.WPF.Authentication
 {
     public class SignInViewModel : INotifyPropertyChanged, IAuthNavigatable
     {

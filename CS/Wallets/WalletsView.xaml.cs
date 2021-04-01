@@ -1,10 +1,7 @@
 ﻿using System.Windows.Controls;
 
-namespace CSharp.ControlSpending.GUI.WPF.Wallets
+namespace CSharp.ControlSpending.CS.Wallets
 {
-    /// <summary>
-    /// Interaction logic for WalletsView.xaml
-    /// </summary>
     public partial class WalletsView : UserControl
     {
         public WalletsView()

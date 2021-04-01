@@ -1,9 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using ControlSpending.Users;
+using System.IO;
+using CSharp.ControlSpending.Users;
 
-namespace ControlSpending
+namespace CSharp.ControlSpending
 {
     // Class Wallet keeps the name, initial wallet balance, description and base currency. 
     // Transactions are added to it. For each wallet, you can specify a list of categories that are available in it for transactions.

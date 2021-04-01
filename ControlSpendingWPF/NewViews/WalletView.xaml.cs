@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ControlSpendingWPF.NewViews
+namespace CSharp.ControlSpending.GUI.WPF.NewViews
 {
     public partial class WalletView : UserControl
     {

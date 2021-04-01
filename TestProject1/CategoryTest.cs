@@ -1,9 +1,7 @@
-﻿using ControlSpending;
-using System;
-using System.IO;
+﻿using System.IO;
 using Xunit;
 
-namespace ControlSpendingTests
+namespace CSharp.ControlSpending.Tests
 {
     public class CategoryTest
     {

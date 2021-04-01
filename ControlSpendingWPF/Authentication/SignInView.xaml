@@ -1,9 +1,8 @@
-﻿<UserControl x:Class="ControlSpendingWPF.Authentication.SignInView"
+﻿<UserControl x:Class="CSharp.ControlSpending.GUI.WPF.Authentication.SignInView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ControlSpendingWPF"
         mc:Ignorable="d" IsEnabled="{Binding IsEnabled}">
     <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid.RowDefinitions>

@@ -1,4 +1,4 @@
-﻿namespace ControlSpendingWPF
+﻿namespace CSharp.ControlSpending.GUI.WPF.Authentication
 {
     public enum AuthNavigatableTypes
     {

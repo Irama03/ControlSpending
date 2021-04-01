@@ -1,11 +1,10 @@
-using ControlSpending;
 using System;
-using System.IO;
 using System.Collections.Generic;
-using ControlSpending.Users;
+using System.IO;
+using CSharp.ControlSpending.Users;
 using Xunit;
 
-namespace  ControlSpendingTests
+namespace CSharp.ControlSpending.Tests
 {
     public class UserTest
     {

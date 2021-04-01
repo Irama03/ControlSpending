@@ -1,4 +1,4 @@
-﻿namespace ControlSpending
+﻿namespace CSharp.ControlSpending
 {
     public enum Currencies
     {

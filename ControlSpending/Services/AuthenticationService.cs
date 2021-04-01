@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using ControlSpending.Users;
+using CSharp.ControlSpending.Users;
 
-namespace ControlSpending.Services
+namespace CSharp.ControlSpending.Services
 {
     public class AuthenticationService
     {

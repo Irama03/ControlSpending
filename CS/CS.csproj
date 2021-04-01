@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <AssemblyName>ControlSpending</AssemblyName>
+        <RootNamespace>CSharp.ControlSpending.CS</RootNamespace>
+        <Company>ControlSpending</Company>
+        <Product>ControlSpending</Product>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ControlSpending\ControlSpending.csproj" />
+    </ItemGroup>
+
+</Project>

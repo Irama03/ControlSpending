@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ControlSpendingWPF.Authentication;
 using Prism.Mvvm;
 
-namespace ControlSpendingWPF
+namespace CSharp.ControlSpending.GUI.WPF.Authentication
 {
     public class AuthViewModel : BindableBase, IMainNavigatable
     {

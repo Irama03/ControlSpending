@@ -1,4 +1,4 @@
-﻿namespace ControlSpending.Users
+﻿namespace CSharp.ControlSpending.Users
 {
     public class AuthenticationUser
     {

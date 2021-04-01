@@ -2,11 +2,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using ControlSpending.Users;
-using ControlSpending.Services;
 using Prism.Commands;
 
-namespace ControlSpendingWPF.Authentication
+namespace CSharp.ControlSpending.GUI.WPF.Authentication
 {
     public class SignUpViewModel : INotifyPropertyChanged, IAuthNavigatable
     {

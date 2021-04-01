@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using CSharp.ControlSpending.Services;
 using Prism.Mvvm;
 
-namespace CSharp.ControlSpending.GUI.WPF.Wallets
+namespace CSharp.ControlSpending.CS.Wallets
 {
     public class WalletsViewModel : BindableBase, IMainNavigatable
     {

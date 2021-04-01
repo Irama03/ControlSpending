@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace CSharp.ControlSpending.GUI.WPF
+namespace CSharp.ControlSpending.CS
 {
     /// <summary>
     /// Interaction logic for App.xaml

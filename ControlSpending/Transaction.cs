@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace ControlSpending
+namespace CSharp.ControlSpending
 {
     // Class Transaction keeps an amount, currency, category, description, date.
     //You can also attach files (images or text) to the transaction.

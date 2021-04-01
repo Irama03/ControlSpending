@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ControlSpendingWPF
+namespace CSharp.ControlSpending.GUI.WPF
 {
     /// <summary>
     /// Interaction logic for MainView.xaml

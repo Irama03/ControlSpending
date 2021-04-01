@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ControlSpending.Users
+namespace CSharp.ControlSpending.Users
 {
     public class DBUser
     {

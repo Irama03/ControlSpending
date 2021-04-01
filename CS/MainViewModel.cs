@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Prism.Mvvm;
+using CSharp.ControlSpending.CS.Authentication;
+using CSharp.ControlSpending.CS.Wallets;
 
 namespace CSharp.ControlSpending.CS
 {

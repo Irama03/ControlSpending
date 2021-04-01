@@ -11,7 +11,33 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\..\..\..\НАУКМА\2курс2семестр\С#\Prism-master\Prism-master\src\Prism.Core\Prism.csproj" />
       <ProjectReference Include="..\ControlSpending\ControlSpending.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Authentication\AuthView.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Authentication\SignInView.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Authentication\SignUpView.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Header.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="NewViews\CategoryView.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+      <Page Update="NewViews\WalletView.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
     </ItemGroup>
 
 </Project>

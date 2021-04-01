@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using CSharp.ControlSpending.Services;
 using Prism.Mvvm;
 
 namespace CSharp.ControlSpending.GUI.WPF.Wallets

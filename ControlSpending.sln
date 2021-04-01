@@ -19,11 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{820D0511
 		Files\money_exchange.txt = Files\money_exchange.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlSpendingWPF", "ControlSpendingWPF\ControlSpendingWPF.csproj", "{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS", "CS\CS.csproj", "{DE65779F-6587-41DA-831E-C511730E62F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Core", "..\..\..\..\..\..\НАУКМА\2курс2семестр\С#\Prism-master\Prism-master\src\Prism.Core\Prism.Core.csproj", "{8FCC1AF6-81A0-41EA-B5C4-3E88AE595D2F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS", "CS\CS.csproj", "{DE65779F-6587-41DA-831E-C511730E62F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism", "..\..\..\..\..\..\НАУКМА\2курс2семестр\С#\Prism-master\Prism-master\src\Prism.Core\Prism.csproj", "{AEF48C90-FCEA-41DC-8620-48C00A1D1B2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,16 +37,14 @@ Global
 		{F1CD32A0-4182-4951-A10C-F7D7734874CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1CD32A0-4182-4951-A10C-F7D7734874CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1CD32A0-4182-4951-A10C-F7D7734874CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7ABDF63-AA5D-4B22-9A9D-A9A460FBBFD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FCC1AF6-81A0-41EA-B5C4-3E88AE595D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FCC1AF6-81A0-41EA-B5C4-3E88AE595D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE65779F-6587-41DA-831E-C511730E62F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE65779F-6587-41DA-831E-C511730E62F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE65779F-6587-41DA-831E-C511730E62F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE65779F-6587-41DA-831E-C511730E62F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEF48C90-FCEA-41DC-8620-48C00A1D1B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF48C90-FCEA-41DC-8620-48C00A1D1B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF48C90-FCEA-41DC-8620-48C00A1D1B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF48C90-FCEA-41DC-8620-48C00A1D1B2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <RootNamespace>CSharp.ControlSpending.GUI.WPF</RootNamespace>
+    <RootNamespace>CSharp.ControlSpending.ControlSpendingWPF</RootNamespace>
     <AssemblyName>ControlSpending</AssemblyName>
     <Company>ControlSpending</Company>
     <Product>ControlSpending</Product>
